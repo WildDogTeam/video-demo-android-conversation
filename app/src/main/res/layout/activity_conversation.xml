@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wilddog.video.ConversationActivity">
+
+    <LinearLayout
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.opengl.GLSurfaceView
+            android:id="@+id/surface"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorTextGray"
+        android:orientation="vertical"
+        >
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="你的Wilddog ID:"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_uid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:gravity="center|bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            >
+
+            <Button
+                android:id="@+id/btn_invite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:text="用户列表"
+                />
+
+            <Button
+                android:id="@+id/btn_invite_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="挂断"
+                android:visibility="gone"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
