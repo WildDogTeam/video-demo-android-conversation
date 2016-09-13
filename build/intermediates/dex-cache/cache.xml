@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/data/project/video/video-quickstart-android/app/libs/libjingle_peerconnection_java.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="ed756aacbf84aba4eedbc9c67021241621023399">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/libjingle_peerconnection_java_74563585145807fd8897f3c2dab9e00dfa08e1dd/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="f81eecb8d5e9e548f75f277830a94a9b37fbb987">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0-beta1_cac0ac26e24495674e9ac389917f4217ad6202ea/classes.dex" />
+    </item>
+    <item
+        jar="/home/chaihua/.gradle/caches/modules-2/files-2.1/com.wilddog/wilddog-client-android/0.6.3/49ea671d617c61e9cd42087cfeb3edcd59fdd099/wilddog-client-android-0.6.3.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="49ea671d617c61e9cd42087cfeb3edcd59fdd099">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/wilddog-client-android-0.6.3_a0b17e9c4b51369b5a9175183c9f1720167bc368/classes.dex" />
+    </item>
+    <item
+        jar="/opt/sdk/SDK/extras/android/m2repository/com/android/support/support-annotations/24.0.0-beta1/support-annotations-24.0.0-beta1.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="04705c19cdec60364bc04e2e928c274da1ba301b">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0-beta1_8e9ba9e5ad86b670618b5aad0841d2576fa50056/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="3c0208faf42864e6695345e64d1b955070263819">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.0.0-beta1_83b35a4b83a67108f49118d0aca48ee493280abb/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="5da51c41fb9614c39bca944fe5a5b6529781b12e">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d71e949bfcca9afb99162cd5c93b3eff004b6a2f/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/libs/wilddog-video-android.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="f1871543b79a64fbd32ad6be3a4ed8c41a07c56e">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/wilddog-video-android_c0bb2843f72371eb300cec55102b6b02d51000b3/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-beta1/jars/libs/internal_impl-24.0.0-beta1.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="23d564c059873f398dc5d967f56791a66472ce76">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0-beta1_9b09ee259e592c2524f047840d7aaff0a8b76c18/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="97f82fd0c185bd2881a93646954f2429be4baa86">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0-beta1_1bc00fa7906ef6ebe8e0be7e982cde04e8e72642/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="8d3137a71200c47974c0454ae8ad272a09c533eb">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.0.0-beta1_4ee322021260758200c771745fd3f4373afa0af7/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="6cc19bd38e60e1aa5250c554f678e882f6231e18">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ad1e2e9b77b4bac62161251a73470e7a2382f6fa/classes.dex" />
+    </item>
+
+</items>

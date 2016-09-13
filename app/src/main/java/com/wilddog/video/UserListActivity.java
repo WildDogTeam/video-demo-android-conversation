@@ -8,8 +8,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,7 +17,6 @@ import com.wilddog.client.ChildEventListener;
 import com.wilddog.client.DataSnapshot;
 import com.wilddog.client.Wilddog;
 import com.wilddog.client.WilddogError;
-
 
 import java.util.ArrayList;
 import java.util.List;
