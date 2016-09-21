@@ -11,9 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wilddog.client.AuthData;
-import com.wilddog.client.Wilddog;
-import com.wilddog.client.WilddogError;
+import com.wilddog.client.SyncReference;
+import com.wilddog.client.WilddogSync;
+import com.wilddog.wilddogauth.WilddogAuth;
+import com.wilddog.wilddogauth.core.Task;
+import com.wilddog.wilddogauth.core.listener.OnCompleteListener;
+import com.wilddog.wilddogauth.core.result.AuthResult;
+import com.wilddog.wilddogcore.WilddogApp;
+import com.wilddog.wilddogcore.WilddogOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_prompt;
 
     private String mAppId;
-    private Wilddog mRef;
+    private SyncReference mRef;
+    private WilddogAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_login_anonymously = (Button) findViewById(R.id.btn_login_anonymously);
         btn_login_anonymously.setOnClickListener(this);
-
 
     }
 
@@ -52,9 +57,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
-                mRef = new Wilddog("http://" + mAppId + ".wilddogio.com");
+                WilddogOptions.Builder builder = new WilddogOptions.Builder().setSyncUrl("http://" + mAppId + "" +
+                        ".wilddogio.com");
+                WilddogOptions options = builder.build();
+                WilddogApp.initializeApp(getApplicationContext(), options);
+                //mRef = new Wilddog("http://" + mAppId);
+                mRef = WilddogSync.getInstance().getReference();
+                auth = WilddogAuth.getInstance();
 
+                auth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            tv_prompt.setVisibility(View.INVISIBLE);
+                            String uid = auth.getCurrentUser().getUid();
+                            Log.e("Login", "authWithPassword uid ::" + uid);
+                            Map<String, Object> map = new HashMap<String, Object>();
+                            map.put(uid, true);
+                            mRef.child("users").updateChildren(map);
+                            mRef.child("users/" + uid).onDisconnect().removeValue();
+                            if (!TextUtils.isEmpty(uid)) {
+                                Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
+                                intent.putExtra("app_id", mAppId);
+                                startActivity(intent);
+                            }
+                        }else {
+                            throw  new RuntimeException("auth 失败"+task.getException().getMessage());
+                        }
+                    }
+                });
 
+/*
                 mRef.authAnonymously(new Wilddog.AuthResultHandler() {
                     @Override
                     public void onAuthenticated(AuthData authData) {
@@ -83,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
 
                     }
-                });
+                });*/
 
                 break;
         }

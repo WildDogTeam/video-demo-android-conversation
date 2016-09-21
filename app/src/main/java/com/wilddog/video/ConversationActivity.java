@@ -11,13 +11,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.wilddog.client.Wilddog;
+import com.wilddog.client.SyncReference;
+import com.wilddog.client.WilddogSync;
 import com.wilddog.video.bean.ConversationException;
 import com.wilddog.video.bean.ConversationMode;
 import com.wilddog.video.bean.InviteOptions;
 import com.wilddog.video.bean.LocalStreamOptions;
 import com.wilddog.video.listener.CompleteListener;
 import com.wilddog.video.listener.ConversationCallback;
+import com.wilddog.wilddogauth.WilddogAuth;
 
 import org.webrtc.RendererCommon;
 import org.webrtc.VideoRenderer;
@@ -69,9 +71,9 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
         btn_invite_cancel = (Button) findViewById(R.id.btn_invite_cancel);
         btn_invite_cancel.setOnClickListener(this);
         mAppId = getIntent().getStringExtra("app_id");
-        Wilddog mRef = new Wilddog("http://" + mAppId + ".wilddogio.com");
-        String uid = mRef.getAuth().getUid();
-        tv_uid.setText( uid);
+        SyncReference mRef = WilddogSync.getReference();
+        String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
+        tv_uid.setText(uid);
         Video.initializeWilddogVideo(getApplicationContext());
         ConversationClient.init(mRef, new CompleteListener() {
             @Override
@@ -242,7 +244,7 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
 
         LocalStream stream = new LocalStream();
         stream.setMediaStream(localStream.getMediaStream());
-        InviteOptions options = new InviteOptions(ConversationMode.BASIC, participants, stream);
+        InviteOptions options = new InviteOptions(ConversationMode.SERVER_BASED, participants, stream);
         outgoingInvite = client.inviteToConversation(options, new ConversationCallback() {
             @Override
             public void onConversation(Conversation conversation, ConversationException exception) {

@@ -15,8 +15,10 @@ import android.widget.TextView;
 
 import com.wilddog.client.ChildEventListener;
 import com.wilddog.client.DataSnapshot;
-import com.wilddog.client.Wilddog;
-import com.wilddog.client.WilddogError;
+import com.wilddog.client.SyncError;
+import com.wilddog.client.SyncReference;
+import com.wilddog.client.WilddogSync;
+import com.wilddog.wilddogauth.WilddogAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ import java.util.List;
 public class UserListActivity extends AppCompatActivity {
 
     private ListView lv_users;
-    private Wilddog mRef;
+    private SyncReference mRef;
 
     private List<String> userList = new ArrayList<>();
     private ChildEventListener childEventListener;
@@ -37,8 +39,8 @@ public class UserListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
         String appId = getIntent().getStringExtra("app_id");
-        mRef = new Wilddog("http://" + appId + ".wilddogio.com");
-        mUid = mRef.getAuth().getUid();
+        mRef = WilddogSync.getReference();
+        mUid = WilddogAuth.getInstance().getCurrentUser().getUid();
         lv_users = (ListView) findViewById(R.id.lv_user_list);
 
         childEventListener = new ChildEventListener() {
@@ -76,7 +78,7 @@ public class UserListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(WilddogError wilddogError) {
+            public void onCancelled(SyncError wilddogError) {
 
             }
         };

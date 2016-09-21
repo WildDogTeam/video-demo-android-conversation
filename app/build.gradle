@@ -39,8 +39,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0-beta1'
     compile files('libs/libjingle_peerconnection_java.jar')
-    /* compile('com.wilddog.client:wilddog-auth-android:2.0.0')
-            compile('com.wilddog.client:wilddog-sync-android:2.0.0')*/
-    compile 'com.wilddog:wilddog-client-android:0.6.3'
-    compile files('libs/wilddog-video-android-0.2.3.jar')
+    compile('com.wilddog.client:wilddog-auth-android:2.0.1')
+    compile('com.wilddog.client:wilddog-sync-android:2.0.1')
+    /* compile 'com.wilddog:wilddog-client-android:0.6.4'*/
+    compile files('libs/wilddog-video-android-0.3.0.jar')
 }
