@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf97af4c-88d6-4ffc-9a84-fa081abf7a5e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/app/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MainActivity.java" />
     </list>
     <ignored path="video-quickstart-android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,14 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.425">
+              <caret line="68" column="44" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
               <folding>
-                <element signature="e#2318#3535#0" expanded="true" />
-                <element signature="e#3534#3535#0" expanded="true" />
+                <element signature="e#2415#3632#0" expanded="true" />
+                <element signature="e#3631#3632#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,7 +103,7 @@
       <file leaf-file-name="ConversationActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/video/ConversationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="33.696968">
+            <state vertical-scroll-proportion="-151.24243">
               <caret line="217" column="26" selection-start-line="217" selection-start-column="26" selection-end-line="217" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -131,10 +131,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02843016">
+            <state vertical-scroll-proportion="-0.7419355">
               <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
@@ -1848,11 +1848,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_participent_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MediaApplication.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/video/UserListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/video/ConversationActivity.java" />
         <option value="$PROJECT_DIR$/app/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2568,8 +2568,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
           <folding>
-            <element signature="e#2318#3535#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
+            <element signature="e#2415#3632#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2646,8 +2646,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="94" column="68" selection-start-line="94" selection-start-column="68" selection-end-line="94" selection-end-column="68" />
           <folding>
-            <element signature="e#2318#3535#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
+            <element signature="e#2415#3632#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2719,8 +2719,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="94" column="68" selection-start-line="94" selection-start-column="68" selection-end-line="94" selection-end-column="68" />
           <folding>
-            <element signature="e#2318#3535#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
+            <element signature="e#2415#3632#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2792,8 +2792,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2318#3535#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
+            <element signature="e#2415#3632#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2857,8 +2857,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2318#3535#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
+            <element signature="e#2415#3632#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3018,17 +3018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
-          <folding>
-            <element signature="e#2318#3535#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/video/UserListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3045,9 +3034,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.548387">
+          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7419355">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/video/ConversationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="33.696968">
+        <state vertical-scroll-proportion="-151.24243">
           <caret line="217" column="26" selection-start-line="217" selection-start-column="26" selection-end-line="217" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -3064,19 +3069,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/.gitignore">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/video/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.548387">
-          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02843016">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.425">
+          <caret line="68" column="44" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
+          <folding>
+            <element signature="e#2415#3632#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

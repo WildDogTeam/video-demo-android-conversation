@@ -29,8 +29,10 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.et_app_id) EditText etAppId;
-    @BindView(R.id.tv_prompt) TextView tvPrompt;
+    @BindView(R.id.et_app_id)
+    EditText etAppId;
+    @BindView(R.id.tv_prompt)
+    TextView tvPrompt;
 
     private String mAppId;
     private SyncReference mRef;
@@ -53,10 +55,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         //初始化WilddogApp,完成初始化之后可在项目任意位置通过getInstance()获取Sync & Auth对象
-        WilddogOptions.Builder builder = new WilddogOptions.Builder().setSyncUrl("http://" + mAppId + ".wilddogio.com");
+        WilddogOptions.Builder builder = new WilddogOptions.Builder().setSyncUrl("https://" + mAppId + ".wilddogio" +
+                ".com");
         WilddogOptions options = builder.build();
         WilddogApp.initializeApp(getApplicationContext(), options);
         //获取Sync & Auth 对象
+        //.child("wilddog")为交互路径，可以自定义，服务器中转模式下要保证该路径与控制面板中设置的路径一致
         mRef = WilddogSync.getInstance().getReference().child("wilddog");
         WilddogSync.getReference();
         auth = WilddogAuth.getInstance();
