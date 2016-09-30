@@ -23,9 +23,12 @@ import com.wilddog.wilddogauth.WilddogAuth;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class UserListActivity extends AppCompatActivity {
 
-    private ListView lv_users;
+    @BindView(R.id.lv_user_list) ListView lvUsers;
     private SyncReference mRef;
 
     private List<String> userList = new ArrayList<>();
@@ -38,19 +41,20 @@ public class UserListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
-        String appId = getIntent().getStringExtra("app_id");
-        mRef = WilddogSync.getReference();
+
+        ButterKnife.bind(this);
+        mRef = WilddogSync.getReference().child("wilddog");
         mUid = WilddogAuth.getInstance().getCurrentUser().getUid();
-        lv_users = (ListView) findViewById(R.id.lv_user_list);
+        lvUsers = (ListView) findViewById(R.id.lv_user_list);
 
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot != null) {
-
-                    String key = dataSnapshot.getKey();
-                    if (!mUid.equals(key)) {
-                        userList.add(key);
+                    //获取用户Wilddog ID并添加到用户列表中
+                    String uid = dataSnapshot.getKey();
+                    if (!mUid.equals(uid)) {
+                        userList.add(uid);
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -64,9 +68,10 @@ public class UserListActivity extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
-                    String key = dataSnapshot.getKey();
-                    if (!mUid.equals(key)) {
-                        userList.remove(key);
+                    //用户离开时，从用户列表中删除用户数据
+                    String uid = dataSnapshot.getKey();
+                    if (!mUid.equals(uid)) {
+                        userList.remove(uid);
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -82,11 +87,12 @@ public class UserListActivity extends AppCompatActivity {
 
             }
         };
+        //监听users节点
         mRef.child("users").addChildEventListener(childEventListener);
 
 
         adapter = new MyAdapter(userList, this);
-        lv_users.setAdapter(adapter);
+        lvUsers.setAdapter(adapter);
 
     }
 

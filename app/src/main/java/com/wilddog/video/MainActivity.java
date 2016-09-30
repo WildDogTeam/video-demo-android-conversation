@@ -23,11 +23,14 @@ import com.wilddog.wilddogcore.WilddogOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    private Button btn_login_anonymously;
-    private EditText et_app_id;
-    private TextView tv_prompt;
+public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.et_app_id) EditText etAppId;
+    @BindView(R.id.tv_prompt) TextView tvPrompt;
 
     private String mAppId;
     private SyncReference mRef;
@@ -37,88 +40,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        et_app_id = (EditText) findViewById(R.id.et_app_id);
-        tv_prompt = (TextView) findViewById(R.id.tv_prompt);
 
-        btn_login_anonymously = (Button) findViewById(R.id.btn_login_anonymously);
-        btn_login_anonymously.setOnClickListener(this);
-
+        ButterKnife.bind(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.btn_login_anonymously:
-                mAppId = et_app_id.getText().toString();
-                if (TextUtils.isEmpty(mAppId)) {
-                    Toast.makeText(MainActivity.this, "请输入你的AppId", Toast.LENGTH_SHORT).show();
-                    et_app_id.setText("");
-                    return;
-                }
-
-                WilddogOptions.Builder builder = new WilddogOptions.Builder().setSyncUrl("http://" + mAppId + "" +
-                        ".wilddogio.com");
-                WilddogOptions options = builder.build();
-                WilddogApp.initializeApp(getApplicationContext(), options);
-                //mRef = new Wilddog("http://" + mAppId);
-                mRef = WilddogSync.getInstance().getReference();
-                auth = WilddogAuth.getInstance();
-
-                auth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            tv_prompt.setVisibility(View.INVISIBLE);
-                            String uid = auth.getCurrentUser().getUid();
-                            Log.e("Login", "authWithPassword uid ::" + uid);
-                            Map<String, Object> map = new HashMap<String, Object>();
-                            map.put(uid, true);
-                            mRef.child("users").updateChildren(map);
-                            mRef.child("users/" + uid).onDisconnect().removeValue();
-                            if (!TextUtils.isEmpty(uid)) {
-                                Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
-                                intent.putExtra("app_id", mAppId);
-                                startActivity(intent);
-                            }
-                        }else {
-                            throw  new RuntimeException("auth 失败"+task.getException().getMessage());
-                        }
-                    }
-                });
-
-/*
-                mRef.authAnonymously(new Wilddog.AuthResultHandler() {
-                    @Override
-                    public void onAuthenticated(AuthData authData) {
-                        if (authData != null) {
-                            tv_prompt.setVisibility(View.INVISIBLE);
-                            String uid = authData.getUid();
-                            Log.e("Login", "authWithPassword uid ::" + uid);
-                            Map<String, Object> map = new HashMap<String, Object>();
-                            map.put(uid, true);
-                            mRef.child("users").updateChildren(map);
-                            mRef.child("users/" + uid).onDisconnect().removeValue();
-                            if (!TextUtils.isEmpty(uid)) {
-                                Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
-                                intent.putExtra("app_id", mAppId);
-                                startActivity(intent);
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onAuthenticationError(WilddogError wilddogError) {
-                        if (wilddogError != null) {
-                            if (wilddogError.getCode() == WilddogError.AUTHENTICATION_PROVIDER_DISABLED) {
-                                tv_prompt.setVisibility(View.VISIBLE);
-                            }
-                        }
-
-                    }
-                });*/
-
-                break;
+    @OnClick(R.id.btn_login_anonymously)
+    public void login() {
+        mAppId = etAppId.getText().toString();
+        if (TextUtils.isEmpty(mAppId)) {
+            Toast.makeText(MainActivity.this, "请输入你的AppId", Toast.LENGTH_SHORT).show();
+            etAppId.setText("");
+            return;
         }
+        //初始化WilddogApp,完成初始化之后可在项目任意位置通过getInstance()获取Sync & Auth对象
+        WilddogOptions.Builder builder = new WilddogOptions.Builder().setSyncUrl("http://" + mAppId + ".wilddogio.com");
+        WilddogOptions options = builder.build();
+        WilddogApp.initializeApp(getApplicationContext(), options);
+        //获取Sync & Auth 对象
+        mRef = WilddogSync.getInstance().getReference().child("wilddog");
+        WilddogSync.getReference();
+        auth = WilddogAuth.getInstance();
+        //采用匿名登录方式认证
+        //还可以选择其他登录方式
+        //auth.signInWithEmailAndPassword();
+        //auth.signInWithCredential();
+        //auth.signInWithCustomToken();
+        auth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    //身份认证成功
+                    tvPrompt.setVisibility(View.INVISIBLE);
+                    String uid = auth.getCurrentUser().getUid();
+                    //用户可以使用任意自定义节点来保存用户数据，但是不要使用 [交互路径/video]节点存放私有数据
+                    //以防和Video SDK 数据发生冲突
+                    //本示例采用根节点下的[交互路径/users] 节点作为用户列表存储节点
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    map.put(uid, true);
+                    mRef.child("users").updateChildren(map);
+                    mRef.child("users/" + uid).onDisconnect().removeValue();
+                    if (!TextUtils.isEmpty(uid)) {
+                        Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
+                        intent.putExtra("app_id", mAppId);
+                        startActivity(intent);
+                    }
+                } else {
+                    //throw new RuntimeException("auth 失败" + task.getException().getMessage());
+                    //处理失败
+                }
+            }
+        });
     }
+
+
 }

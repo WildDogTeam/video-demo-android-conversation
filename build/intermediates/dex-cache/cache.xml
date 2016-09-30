@@ -9,6 +9,13 @@
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/libjingle_peerconnection_java_74563585145807fd8897f3c2dab9e00dfa08e1dd/classes.dex" />
     </item>
     <item
+        jar="/data/project/video/video-quickstart-android/app/libs/wilddog-video-android-0.3.1.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="5b8f18f86aae0ed2cd3bfecaa5234b07b09ac135">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/wilddog-video-android-0.3.1_1750a2703ae1b8210fe4068c276b7884425da173/classes.dex" />
+    </item>
+    <item
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-beta1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.0"
@@ -30,13 +37,6 @@
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_9d344c06e13956dc6d41853e98360ef01d7cbdae/classes.dex" />
     </item>
     <item
-        jar="/opt/sdk/SDK/extras/android/m2repository/com/android/support/support-annotations/24.0.0-beta1/support-annotations-24.0.0-beta1.jar"
-        jumboMode="true"
-        revision="24.0.0"
-        sha1="04705c19cdec60364bc04e2e928c274da1ba301b">
-        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0-beta1_8e9ba9e5ad86b670618b5aad0841d2576fa50056/classes.dex" />
-    </item>
-    <item
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0-beta1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.0"
@@ -47,15 +47,8 @@
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="24.0.0"
-        sha1="45931a30bfce423b124ead05a904e6ac73efb7a6">
+        sha1="fa3399f7e4ba3910e021b648b9d3a15939a435f6">
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d71e949bfcca9afb99162cd5c93b3eff004b6a2f/classes.dex" />
-    </item>
-    <item
-        jar="/data/project/video/video-quickstart-android/app/libs/wilddog-video-android-0.3.0.jar"
-        jumboMode="true"
-        revision="24.0.0"
-        sha1="2500f6ebeded0ef5f7bc725b5a99dcef1b708797">
-        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/wilddog-video-android-0.3.0_9fee347b53c495cf794e6750e19c5be3ce776e55/classes.dex" />
     </item>
     <item
         jar="/home/chaihua/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.0/1477ec5caf8319ab4b51eb43553cd66aa86fdea5/okhttp-2.7.0.jar"
@@ -65,11 +58,25 @@
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-2.7.0_07b733fa8ecfa2f3b21d1b84a1fafe0374e7a09b/classes.dex" />
     </item>
     <item
+        jar="/home/chaihua/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.4.0/ea392375cf9ff59234a82e7928a204215ccc98cd/butterknife-annotations-8.4.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.4.0_2c5c31cf31ac441ed1e41beb739b6de8e7656e33/classes.dex" />
+    </item>
+    <item
         jar="/home/chaihua/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
         jumboMode="true"
         revision="24.0.0"
         sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.2.2_070dd2a38af2191f8b16cd9229b3e8125287fed1/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.4.0_235c6eb38d783fad17b9f1044d1ee38749fce62a/classes.dex" />
     </item>
     <item
         jar="/home/chaihua/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
@@ -84,6 +91,13 @@
         revision="24.0.0"
         sha1="98476622f10715998eacf9240d6b479f12c66143">
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.6.0_40fc424ff54011d6cc69d67ce7eacc2ef96f6aa9/classes.dex" />
+    </item>
+    <item
+        jar="/opt/sdk/SDK/extras/android/m2repository/com/android/support/support-annotations/24.1.0/support-annotations-24.1.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.0_a180de21c88e9752bc03175b90381a70065966d7/classes.dex" />
     </item>
     <item
         jar="/home/chaihua/.gradle/caches/modules-2/files-2.1/com.wilddog.client/wilddog-common-android/2.0.1/4f61006a1130a2ae32d93f1607b179e374593db2/wilddog-common-android-2.0.1.jar"
@@ -138,7 +152,7 @@
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.0"
-        sha1="ea32f2903b6073b6afe29e6e7a12eaf4c711b35c">
+        sha1="c3c2c6458d702f7a55f5e553c8c9c2b2ad3d28c6">
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ad1e2e9b77b4bac62161251a73470e7a2382f6fa/classes.dex" />
     </item>
     <item
