@@ -9,13 +9,6 @@
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/libjingle_peerconnection_java_74563585145807fd8897f3c2dab9e00dfa08e1dd/classes.dex" />
     </item>
     <item
-        jar="/data/project/video/video-quickstart-android/app/libs/wilddog-video-android-0.3.1.jar"
-        jumboMode="true"
-        revision="24.0.0"
-        sha1="5b8f18f86aae0ed2cd3bfecaa5234b07b09ac135">
-        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/wilddog-video-android-0.3.1_1750a2703ae1b8210fe4068c276b7884425da173/classes.dex" />
-    </item>
-    <item
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-beta1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.0"
@@ -47,7 +40,7 @@
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="24.0.0"
-        sha1="fa3399f7e4ba3910e021b648b9d3a15939a435f6">
+        sha1="cf4fe644f214c09589ef317025e284e5f7c7fce5">
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d71e949bfcca9afb99162cd5c93b3eff004b6a2f/classes.dex" />
     </item>
     <item
@@ -70,6 +63,13 @@
         revision="24.0.0"
         sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.2.2_070dd2a38af2191f8b16cd9229b3e8125287fed1/classes.dex" />
+    </item>
+    <item
+        jar="/data/project/video/video-quickstart-android/app/libs/wilddog-video-android-0.4.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="60ddc1c7c4cd8e6f378143665d94f881237101fa">
+        <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/2/wilddog-video-android-0.4.0_f1431201d03a6a1612b05647ae348f2407b093ff/classes.dex" />
     </item>
     <item
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/jars/classes.jar"
@@ -152,7 +152,7 @@
         jar="/data/project/video/video-quickstart-android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.0"
-        sha1="c3c2c6458d702f7a55f5e553c8c9c2b2ad3d28c6">
+        sha1="50b2dc730f14a4f1cad41bb035512c89db15a2f3">
         <dex dex="/data/project/video/video-quickstart-android/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ad1e2e9b77b4bac62161251a73470e7a2382f6fa/classes.dex" />
     </item>
     <item

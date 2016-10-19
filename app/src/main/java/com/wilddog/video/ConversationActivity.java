@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import com.wilddog.client.SyncReference;
 import com.wilddog.client.WilddogSync;
-import com.wilddog.video.bean.ConversationException;
 import com.wilddog.video.bean.ConversationMode;
 import com.wilddog.video.bean.InviteOptions;
 import com.wilddog.video.bean.LocalStreamOptions;
+import com.wilddog.video.bean.VideoException;
 import com.wilddog.video.listener.CompleteListener;
 import com.wilddog.video.listener.ConversationCallback;
 import com.wilddog.wilddogauth.WilddogAuth;
@@ -43,7 +43,7 @@ public class ConversationActivity extends AppCompatActivity {
     private VideoRenderer.Callbacks remoteCallbacks;
 
     private ConversationClient client;
-    private Video video;
+    private WilddogVideo video;
     private LocalStream localStream;
     private Conversation mConversation;
     private OutgoingInvite outgoingInvite;
@@ -61,7 +61,7 @@ public class ConversationActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFailedToStartListening(ConversationClient client, ConversationException e) {
+        public void onFailedToStartListening(ConversationClient client, VideoException e) {
 
         }
 
@@ -87,7 +87,7 @@ public class ConversationActivity extends AppCompatActivity {
                     stream.setMediaStream(localStream.getMediaStream());
                     invite.accept(stream, new ConversationCallback() {
                         @Override
-                        public void onConversation(Conversation conversation, ConversationException exception) {
+                        public void onConversation(Conversation conversation, VideoException exception) {
                             //对方接受邀请并成功建立会话，conversation不为空，exception为空
                             if (conversation != null) {
                                 mConversation = conversation;
@@ -106,7 +106,7 @@ public class ConversationActivity extends AppCompatActivity {
                                     @Override
                                     public void onFailedToConnectParticipant(Conversation conversation,
                                                                              Participant participant,
-                                                                             ConversationException exception) {
+                                                                             VideoException exception) {
 
                                     }
 
@@ -118,7 +118,7 @@ public class ConversationActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onConversationEnded(Conversation conversation,
-                                                                    ConversationException exception) {
+                                                                    VideoException exception) {
 
                                     }
                                 });
@@ -161,7 +161,7 @@ public class ConversationActivity extends AppCompatActivity {
         tvUid.setText(uid);
         //初始化Video 时需要初始化两个类，Video和ConversationClient类，分别对其进行初始化
         //初始化Video，传入Context
-        Video.initializeWilddogVideo(getApplicationContext());
+        WilddogVideo.initializeWilddogVideo(getApplicationContext());
         //初始化视频根节点，mRef=WilddogSync.getReference().child([视频控制面板中配置的自定义根节点]);
         ConversationClient.init(mRef, new CompleteListener() {
             @Override
@@ -170,12 +170,12 @@ public class ConversationActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onError(String s) {
+            public void onError(VideoException s) {
 
             }
         });
         //获取video对象
-        video = Video.getInstance();
+        video = WilddogVideo.getInstance();
         //获取client对象
         client = video.getClient();
 
@@ -188,7 +188,7 @@ public class ConversationActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onError(String s) {
+            public void onError(VideoException s) {
 
             }
         });
@@ -256,7 +256,7 @@ public class ConversationActivity extends AppCompatActivity {
         //通过OutgoingInvite对象可以进行取消邀请操作
         outgoingInvite = client.inviteToConversation(options, new ConversationCallback() {
             @Override
-            public void onConversation(Conversation conversation, ConversationException exception) {
+            public void onConversation(Conversation conversation, VideoException exception) {
                 if (conversation != null) {
                     //对方接受邀请并成功建立会话，conversation不为空，exception为空
                     mConversation = conversation;
@@ -270,7 +270,7 @@ public class ConversationActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailedToConnectParticipant(Conversation conversation, Participant participant,
-                                                                 ConversationException exception) {
+                                                                 VideoException exception) {
 
                         }
 
@@ -280,7 +280,7 @@ public class ConversationActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onConversationEnded(Conversation conversation, ConversationException exception) {
+                        public void onConversationEnded(Conversation conversation, VideoException exception) {
 
                         }
                     });
