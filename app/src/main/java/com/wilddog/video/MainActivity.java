@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         WilddogApp.initializeApp(getApplicationContext(), options);
         //获取Sync & Auth 对象
         //.child("wilddog")为交互路径，可以自定义，服务器中转模式下要保证该路径与控制面板中设置的路径一致
-        mRef = WilddogSync.getInstance().getReference().child("wilddog");
+        mRef = WilddogSync.getInstance().getReference().child("wilddogVideo");
         WilddogSync.getReference();
         auth = WilddogAuth.getInstance();
         //采用匿名登录方式认证
@@ -81,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     //本示例采用根节点下的[交互路径/users] 节点作为用户列表存储节点
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put(uid, true);
-                    mRef.child("users").updateChildren(map);
-                    mRef.child("users/" + uid).onDisconnect().removeValue();
+                    SyncReference userRef=WilddogSync.getInstance().getReference("users");
+                    userRef.updateChildren(map);
+                    userRef.child(uid).onDisconnect().removeValue();
                     if (!TextUtils.isEmpty(uid)) {
                         Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
                         intent.putExtra("app_id", mAppId);

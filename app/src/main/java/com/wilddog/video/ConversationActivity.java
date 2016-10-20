@@ -156,7 +156,7 @@ public class ConversationActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        SyncReference mRef = WilddogSync.getReference().child("wilddog");
+        SyncReference mRef = WilddogSync.getReference().child("wilddogVideo");
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
         tvUid.setText(uid);
         //初始化Video 时需要初始化两个类，Video和ConversationClient类，分别对其进行初始化
