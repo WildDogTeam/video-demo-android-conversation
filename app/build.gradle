@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion '24.0.0'
 
     defaultConfig {
         applicationId "com.wilddog.video"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
         versionName "1.1"
@@ -41,11 +41,12 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0-beta1'
-    compile files('libs/libjingle_peerconnection_java.jar')
-    compile 'com.wilddog.client:wilddog-auth-android:2.0.1'
-    compile 'com.wilddog.client:wilddog-sync-android:2.0.1'
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile files('libs/wilddog-video-android-0.4.0.jar')
+    compile('com.wilddog.client:wilddog-video-android:0.4.1') {
+        /*exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'*/
+    }
+
+    compile 'com.android.support:appcompat-v7:24.2.1'
 }

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="wilddog-video-android-0.4.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/0.4.1/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/0.4.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wilddog.client/wilddog-video-android/0.4.1/518f3f912bd2ce73d6c023ed79d7b4ddd064eaa2/wilddog-video-android-0.4.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

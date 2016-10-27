@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.wilddog.video.UserListActivity">
+    tools:context="com.wilddog.quickstart.UserListActivity">
     <ListView
         android:id="@+id/lv_user_list"
         android:layout_width="match_parent"

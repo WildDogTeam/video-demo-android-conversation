@@ -82,7 +82,5 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
-    </style>
 
 </resources>
