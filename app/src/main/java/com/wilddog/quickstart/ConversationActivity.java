@@ -9,6 +9,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.wilddog.client.SyncReference;
@@ -57,8 +60,6 @@ public class ConversationActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_uid)
     TextView tvUid;
-/*    @BindView(R.id.surface)
-    GLSurfaceView mGLSurfaceView;*/
 
     @BindView(R.id.local_video_layout)
     PercentFrameLayout localRenderLayout;
@@ -186,6 +187,19 @@ public class ConversationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set window styles for fullscreen-window size. Needs to be done before
+        // adding content.
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+                        | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                        | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.activity_conversation);
 
         ButterKnife.bind(this);
@@ -296,7 +310,7 @@ public class ConversationActivity extends AppCompatActivity {
         stream.setMediaStream(localStream.getMediaStream());
         //ConversationMode可以选择P2P和SERVER_BASED两种
         //participants 为传入的用户Wilddog ID 列表，目前预览版仅支持单人邀请
-        InviteOptions options = new InviteOptions(ConversationMode.SERVER_BASED, participants, stream);
+        InviteOptions options = new InviteOptions(ConversationMode.P2P, participants, stream);
         //inviteToConversation 方法会返回一个OutgoingInvite对象，
         //通过OutgoingInvite对象可以进行取消邀请操作
         outgoingInvite = client.inviteToConversation(options, new ConversationCallback() {
@@ -344,22 +358,4 @@ public class ConversationActivity extends AppCompatActivity {
         //需要离开会话时调用此方法，并做资源释放和其他自定义操作
         mConversation.disconnect();
     }
-
-    @SuppressLint("NewApi")
-    private boolean SupportAvcCodec() {
-        if (Build.VERSION.SDK_INT >= 18) {
-            for (int j = MediaCodecList.getCodecCount() - 1; j >= 0; j--) {
-                MediaCodecInfo codecInfo = MediaCodecList.getCodecInfoAt(j);
-
-                String[] types = codecInfo.getSupportedTypes();
-                for (int i = 0; i < types.length; i++) {
-                    if (types[i].equalsIgnoreCase("video/avc")) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
 }

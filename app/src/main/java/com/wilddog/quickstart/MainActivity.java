@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         WilddogApp.initializeApp(getApplicationContext(), options);
         //获取Sync & Auth 对象
         //.child("wilddog")为交互路径，可以自定义，服务器中转模式下要保证该路径与控制面板中设置的路径一致
-        mRef = WilddogSync.getInstance().getReference().child("wilddogVideo");
-        WilddogSync.getReference();
+        //mRef = WilddogSync.getInstance().getReference().child("wilddogVideo");
+        //WilddogSync.getReference();
         auth = WilddogAuth.getInstance();
         //采用匿名登录方式认证
         //还可以选择其他登录方式
