@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="320dp">
 
-        <com.wilddog.quickstart.PercentFrameLayout
+        <com.wilddog.video.WilddogVideoViewLayout
             android:id="@+id/remote_video_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -20,9 +20,9 @@
                 android:id="@+id/remote_video_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </com.wilddog.quickstart.PercentFrameLayout>
+        </com.wilddog.video.WilddogVideoViewLayout>
 
-        <com.wilddog.quickstart.PercentFrameLayout
+        <com.wilddog.video.WilddogVideoViewLayout
             android:id="@+id/local_video_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -30,7 +30,7 @@
                 android:id="@+id/local_video_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </com.wilddog.quickstart.PercentFrameLayout>
+        </com.wilddog.video.WilddogVideoViewLayout>
 
     </RelativeLayout>
 

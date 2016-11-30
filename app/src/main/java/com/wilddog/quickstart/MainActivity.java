@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     TextView tvPrompt;
 
     private String mAppId;
-    private SyncReference mRef;
     private WilddogAuth auth;
 
     @Override
@@ -58,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
         WilddogOptions options = builder.build();
         WilddogApp.initializeApp(getApplicationContext(), options);
         //获取Sync & Auth 对象
-        //.child("wilddog")为交互路径，可以自定义，服务器中转模式下要保证该路径与控制面板中设置的路径一致
-        //mRef = WilddogSync.getInstance().getReference().child("wilddogVideo");
-        //WilddogSync.getReference();
         auth = WilddogAuth.getInstance();
         //采用匿名登录方式认证
         //还可以选择其他登录方式
@@ -74,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     //身份认证成功
                     tvPrompt.setVisibility(View.INVISIBLE);
                     String uid = auth.getCurrentUser().getUid();
-                    //用户可以使用任意自定义节点来保存用户数据，但是不要使用 [交互路径/video]节点存放私有数据
+                    //用户可以使用任意自定义节点来保存用户数据，但是不要使用 [wilddogVideo]节点存放私有数据
                     //以防和Video SDK 数据发生冲突
-                    //本示例采用根节点下的[交互路径/users] 节点作为用户列表存储节点
+                    //本示例采用根节点下的[users] 节点作为用户列表存储节点
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put(uid, true);
                     SyncReference userRef=WilddogSync.getInstance().getReference("users");
@@ -88,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 } else {
-                    //throw new RuntimeException("auth 失败" + task.getException().getMessage());
                     //处理失败
+                    //throw new RuntimeException("auth 失败" + task.getException().getMessage());
                 }
             }
         });
