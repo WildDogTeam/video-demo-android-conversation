@@ -51,3 +51,6 @@ workspace.xml
 # Keystore files
 *.jks
 
+/libs
+
+/src/main/jniLibs
