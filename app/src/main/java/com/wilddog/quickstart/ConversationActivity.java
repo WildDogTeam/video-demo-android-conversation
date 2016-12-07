@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +32,6 @@ import com.wilddog.video.listener.CompleteListener;
 import com.wilddog.video.listener.ConversationCallback;
 import com.wilddog.wilddogauth.WilddogAuth;
 
-import org.webrtc.EglBase;
-import org.webrtc.RendererCommon;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +52,9 @@ public class ConversationActivity extends AppCompatActivity {
     private static final int REMOTE_Y = 0;
     private static final int REMOTE_WIDTH = 50;
     private static final int REMOTE_HEIGHT = 100;
+
+    @BindView(R.id.btn_invite)
+    Button btnInvite;
 
     @BindView(R.id.tv_uid)
     TextView tvUid;
@@ -77,7 +78,6 @@ public class ConversationActivity extends AppCompatActivity {
     private OutgoingInvite outgoingInvite;
     //AlertDialog列表
     private Map<IncomingInvite, AlertDialog> incomingDialogMap;
-    private EglBase eglBase;
 
     private WilddogVideoClient.Listener inviteListener = new WilddogVideoClient.Listener() {
         @Override
@@ -104,55 +104,7 @@ public class ConversationActivity extends AppCompatActivity {
                             if (conversation != null) {
                                 mConversation = conversation;
                                 //获取到conversation后，设置ConversationListener
-                                mConversation.setConversationListener(new Conversation.Listener() {
-                                    @Override
-                                    public void onConnected(Conversation conversation) {
-
-                                    }
-
-                                    @Override
-                                    public void onConnectFailed(Conversation conversation, VideoException e) {
-
-                                    }
-
-                                    @Override
-                                    public void onDisconnected(Conversation conversation, VideoException e) {
-
-                                    }
-
-                                    @Override
-                                    public void onParticipantConnected(Conversation conversation, Participant
-                                            participant) {
-
-                                        participant.setListener(new Participant.Listener() {
-                                            @Override
-                                            public void onStreamAdded(RemoteStream remoteStream) {
-                                                //有参与者成功加入会话后，会触发此方法
-                                                remoteStream.enableAudio(false);
-                                                //在视频展示控件中播放其他端媒体流
-                                                remoteStream.attach(remoteView);
-                                            }
-
-                                            @Override
-                                            public void onStreamRemoved(RemoteStream remoteStream) {
-
-                                            }
-
-                                            @Override
-                                            public void onError(VideoException e) {
-
-                                            }
-                                        });
-
-                                    }
-
-                                    @Override
-                                    public void onParticipantDisconnected(Conversation conversation, Participant
-                                            participant) {
-
-                                    }
-
-                                });
+                                mConversation.setConversationListener(conversationListener);
 
                             } else {
                                 //处理会话建立失败逻辑
@@ -181,24 +133,70 @@ public class ConversationActivity extends AppCompatActivity {
 
     };
 
+    Conversation.Listener conversationListener = new Conversation.Listener() {
+        @Override
+        public void onConnected(Conversation conversation) {
+
+        }
+
+        @Override
+        public void onConnectFailed(Conversation conversation, VideoException e) {
+
+        }
+
+        @Override
+        public void onDisconnected(Conversation conversation, VideoException e) {
+
+        }
+
+        @Override
+        public void onParticipantConnected(Conversation conversation, Participant participant) {
+            outgoingInvite=null;
+
+            participant.setListener(new Participant.Listener() {
+                @Override
+                public void onStreamAdded(RemoteStream remoteStream) {
+                    //有参与者成功加入会话后，会触发此方法
+                    remoteStream.enableAudio(false);
+                    //在视频展示控件中播放其他端媒体流
+                    remoteStream.attach(remoteView);
+                }
+
+                @Override
+                public void onStreamRemoved(RemoteStream remoteStream) {
+
+                }
+
+                @Override
+                public void onError(VideoException e) {
+
+                }
+            });
+
+        }
+
+        @Override
+        public void onParticipantDisconnected(Conversation conversation, Participant participant) {
+
+            Toast.makeText(ConversationActivity.this, "用户：" + participant.getParticipantId() +
+                    "离开会话", Toast.LENGTH_SHORT).show();
+            btnInvite.setText("用户列表");
+
+        }
 
 
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set window styles for fullscreen-window size. Needs to be done before
         // adding content.
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-                        | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                        | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                        | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams
+                .FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams
+                .FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View
+                .SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.activity_conversation);
 
         ButterKnife.bind(this);
@@ -225,13 +223,12 @@ public class ConversationActivity extends AppCompatActivity {
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
         LocalStreamOptions options = builder.height(240).width(320).build();
         //创建本地视频流，通过video对象获取本地视频流
-        localStream = video.createLocalStream(options, eglBase.getEglBaseContext(), new
-                CompleteListener() {
-                    @Override
-                    public void onCompleted(VideoException e) {
+        localStream = video.createLocalStream(options, new CompleteListener() {
+            @Override
+            public void onCompleted(VideoException e) {
 
-                    }
-                });
+            }
+        });
         //为视频流绑定播放控件
         localStream.attach(localView);
 
@@ -243,32 +240,39 @@ public class ConversationActivity extends AppCompatActivity {
     //初始化视频展示控件
     private void initVideoRender() {
         //获取EglBase对象
-        eglBase = EglBase.create();
+
         //初始化视频展示控件位置，大小
         localViewLayout.setPosition(LOCAL_X_CONNECTED, LOCAL_Y_CONNECTED, LOCAL_WIDTH_CONNECTED,
                 LOCAL_HEIGHT_CONNECTED);
-        localView.init(eglBase.getEglBaseContext(), null);
         localView.setZOrderMediaOverlay(true);
-        localView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
         localView.setMirror(true);
-        localView.requestLayout();
 
         remoteViewLayout.setPosition(REMOTE_X, REMOTE_Y, REMOTE_WIDTH, REMOTE_HEIGHT);
-        remoteView.init(eglBase.getEglBaseContext(), null);
-        remoteView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
-        remoteView.setMirror(false);
-        remoteView.requestLayout();
+
     }
 
     @OnClick(R.id.btn_invite)
     public void invite() {
-        showLoginUsers();
+
+        //取消发起会话邀请
+        if (outgoingInvite != null) {
+            outgoingInvite.cancel();
+            btnInvite.setText("用户列表");
+            outgoingInvite = null;
+        } else {
+
+            showLoginUsers();
+        }
+
     }
 
     @OnClick(R.id.btn_invite_cancel)
     public void inviteCancel() {
-        //取消发起会话邀请
-        outgoingInvite.cancel();
+
+        if (mConversation != null){
+            mConversation.disconnect();
+            mConversation=null;
+        }
     }
 
 
@@ -284,6 +288,7 @@ public class ConversationActivity extends AppCompatActivity {
             String participant = data.getStringExtra("participant");
             //调用inviteToConversation 方法发起会话
             inviteToConversation(participant);
+            btnInvite.setText("取消邀请");
         }
     }
 
@@ -296,61 +301,14 @@ public class ConversationActivity extends AppCompatActivity {
         ConnectOptions options = new ConnectOptions(localStream, "chaih");
         //inviteToConversation 方法会返回一个OutgoingInvite对象，
         //通过OutgoingInvite对象可以进行取消邀请操作
-        outgoingInvite = client.inviteToConversation(participant,options, new ConversationCallback() {
+        outgoingInvite = client.inviteToConversation(participant, options, new ConversationCallback() {
             @Override
             public void onConversation(Conversation conversation, VideoException exception) {
                 if (conversation != null) {
                     //对方接受邀请并成功建立会话，conversation不为空，exception为空
                     mConversation = conversation;
-                    mConversation.setConversationListener(new Conversation.Listener() {
-                        @Override
-                        public void onConnected(Conversation conversation) {
 
-                        }
-
-                        @Override
-                        public void onConnectFailed(Conversation conversation, VideoException e) {
-
-                        }
-
-                        @Override
-                        public void onDisconnected(Conversation conversation, VideoException e) {
-
-                        }
-
-                        @Override
-                        public void onParticipantConnected(Conversation conversation, Participant participant) {
-
-                            participant.setListener(new Participant.Listener() {
-                                @Override
-                                public void onStreamAdded(RemoteStream remoteStream) {
-                                    remoteStream.enableAudio(false);
-                                    remoteStream.attach(remoteView);
-                                }
-
-                                @Override
-                                public void onStreamRemoved(RemoteStream remoteStream) {
-
-                                }
-
-                                @Override
-                                public void onError(VideoException e) {
-
-                                }
-                            });
-
-                        }
-
-
-
-                        @Override
-                        public void onParticipantDisconnected(Conversation conversation, Participant participant) {
-
-                            Toast.makeText(ConversationActivity.this,"用户："+participant.getParticipantId()+"离开会话",Toast.LENGTH_SHORT).show();
-                        }
-
-
-                    });
+                    mConversation.setConversationListener(conversationListener);
                 } else {
                     //对方拒绝时，exception不为空
                 }
