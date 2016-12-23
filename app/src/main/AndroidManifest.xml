@@ -35,6 +35,10 @@
         <activity android:name="com.wilddog.quickstart.UserListActivity">
         </activity>
 
+        <activity
+            android:name=".PermissionActivity"
+            android:theme="@style/NotitleTheme"/>
+
         <meta-data
             android:name="appId"
             android:value="wilddog-gwal-7295"/>

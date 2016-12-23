@@ -166,14 +166,15 @@ public class ConversationActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onStreamRemoved(RemoteStream remoteStream) {
+                public void onConnectFailed(Participant participant, VideoException e) {
 
                 }
 
                 @Override
-                public void onError(VideoException e) {
+                public void onDisconnected(Participant participant, VideoException e) {
 
                 }
+
             });
 
         }
@@ -184,7 +185,7 @@ public class ConversationActivity extends AppCompatActivity {
             Toast.makeText(ConversationActivity.this, "用户：" + participant.getParticipantId() +
                     "离开会话", Toast.LENGTH_SHORT).show();
             btnInvite.setText("用户列表");
-
+            mConversation.disconnect();
         }
 
 
@@ -203,13 +204,6 @@ public class ConversationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conversation);
 
         ButterKnife.bind(this);
-
-        /*int checker=PermissionChecker.checkCallingPermission(this,"android.permission.CAMERA",null);
-        if (checker==-1){
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            intent.setData(Uri.parse("package:" + getPackageName()));
-            startActivity(intent);
-        }*/
 
 
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
@@ -332,12 +326,21 @@ public class ConversationActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         //需要离开会话时调用此方法，并做资源释放和其他自定义操作
-
+        localStream.detach();
+        localStream.close();
+        if (localView != null) {
+            localView.release();
+            localView = null;
+        }
+        if (remoteView != null) {
+            remoteView.release();
+            remoteView = null;
+        }
         if (mConversation != null) {
             mConversation.disconnect();
         }
-        localStream.detach();
-        localStream.close();
+
+        client.dispose();
         video.dispose();
     }
 }

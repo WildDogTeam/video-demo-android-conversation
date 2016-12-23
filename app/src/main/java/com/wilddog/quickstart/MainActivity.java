@@ -1,5 +1,6 @@
 package com.wilddog.quickstart;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,16 +32,31 @@ public class MainActivity extends AppCompatActivity {
     EditText etAppId;
     @BindView(R.id.tv_prompt)
     TextView tvPrompt;
-
+    private static final int REQUEST_CODE = 0; // 请求码
     private String mAppId;
     private WilddogAuth auth;
-
+    // 所需的全部权限
+    static final String[] PERMISSIONS = new String[]{
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.CAMERA
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        //动态申请权限
+        int sdk=android.os.Build.VERSION.SDK_INT;
+        if (sdk>=23){
+            Intent intent=new Intent(this,PermissionActivity.class);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Bundle bundle=new Bundle();
+            bundle.putStringArray("permission",PERMISSIONS);
+            PermissionActivity.startActivityForResult(this,REQUEST_CODE,PERMISSIONS);
+        }
     }
 
     @OnClick(R.id.btn_login_anonymously)
@@ -90,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
+        if (requestCode == REQUEST_CODE && resultCode == PermissionHelper.PERMISSIONS_DENIED) {
+            finish();
+        }else {
 
+        }
+    }
 
 }
