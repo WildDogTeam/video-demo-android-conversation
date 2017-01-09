@@ -209,7 +209,7 @@ public class ConversationActivity extends AppCompatActivity {
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
         tvUid.setText(uid);
 
-        SyncReference reference = WilddogSync.getReference();
+        SyncReference reference = WilddogSync.getInstance().getReference();
         String path = reference.getRoot().toString();
         int startIndex = path.indexOf("https://") == 0 ? 8 : 7;
         String appid = path.substring(startIndex, path.length() - 14);

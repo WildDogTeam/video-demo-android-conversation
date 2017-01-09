@@ -43,7 +43,7 @@ public class UserListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_list);
 
         ButterKnife.bind(this);
-        mRef = WilddogSync.getReference("users");
+        mRef = WilddogSync.getInstance().getReference("users");
         mUid = WilddogAuth.getInstance().getCurrentUser().getUid();
         lvUsers = (ListView) findViewById(R.id.lv_user_list);
 
