@@ -31,6 +31,7 @@ import com.wilddog.video.WilddogVideoViewLayout;
 import com.wilddog.video.bean.ConnectOptions;
 import com.wilddog.video.bean.LocalStreamOptions;
 import com.wilddog.video.bean.VideoException;
+import com.wilddog.video.bean.VideoExceptionCode;
 import com.wilddog.video.listener.CompleteListener;
 import com.wilddog.video.listener.ConversationCallback;
 import com.wilddog.wilddogauth.WilddogAuth;
@@ -144,7 +145,10 @@ public class ConversationActivity extends AppCompatActivity {
 
         @Override
         public void onConnectFailed(Conversation conversation, VideoException e) {
-
+            //
+            if(e.getErrorCode()== VideoExceptionCode.VIDEO_CLIENT_REGISTRATION_FAILED && e.getMessage().equals("VIDEO_CLIENT_REGISTRATION_FAILED:App is stopped for resource limit")){
+                Toast.makeText(ConversationActivity.this,"video功能未开启或者已停止服务",Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
