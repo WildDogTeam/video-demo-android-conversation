@@ -12,15 +12,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\exploded-aar\com.wilddog.client\wilddog-video-android\0.5.10\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="6a15ba97a6f600617706c3b3c9e591a5bf5b5de1">
-        <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\com.wilddog.client-wilddog-video-android-0.5.10_cacbd2123f9a4913d0d4ace65debdbd6ce8eccaa.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -72,6 +63,15 @@
         revision="24.0.0"
         sha1="45bc24c983538f284ae1d09bb68c7818480d5585">
         <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\wilddog-sync-android-2.1.1_3083aa531d75b2be4484d727253748b5702c867f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\exploded-aar\com.wilddog.client\wilddog-video-android\0.5.12\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.0"
+        sha1="e73e16ffaa873cbd63a240217f89422ddded0fd5">
+        <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\com.wilddog.client-wilddog-video-android-0.5.12_b27ceaddf5c018f74f78bfc97fcabd9f1f8aca88.jar" />
     </item>
     <item
         is-multidex="false"
