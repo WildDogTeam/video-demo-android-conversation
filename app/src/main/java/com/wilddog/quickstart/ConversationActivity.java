@@ -185,11 +185,11 @@ public class ConversationActivity extends AppCompatActivity {
 
         @Override
         public void onParticipantDisconnected(Conversation conversation, Participant participant) {
-
             Toast.makeText(ConversationActivity.this, "用户：" + participant.getParticipantId() +
                     "离开会话", Toast.LENGTH_SHORT).show();
             btnInvite.setText("用户列表");
             mConversation.disconnect();
+
         }
 
 

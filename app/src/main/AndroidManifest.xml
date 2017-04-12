@@ -38,7 +38,12 @@
         <activity
             android:name=".PermissionActivity"
             android:theme="@style/NotitleTheme"/>
-
+        <receiver android:name="com.wilddog.client.receiver.WilddogAuthCastReceiver">
+            <intent-filter>
+                <action android:name="com.wilddog.wilddogauth.signinsuccess" />
+                <action android:name="com.wilddog.wilddogauth.signoutsuccess" />
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="appId"
             android:value="wilddog-gwal-7295"/>

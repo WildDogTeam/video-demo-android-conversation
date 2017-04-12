@@ -66,12 +66,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\exploded-aar\com.wilddog.client\wilddog-video-android\0.5.12\jars\classes.jar"
+        jar="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\exploded-aar\com.wilddog.client\wilddog-video-android\0.5.13\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.0"
-        sha1="e73e16ffaa873cbd63a240217f89422ddded0fd5">
-        <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\com.wilddog.client-wilddog-video-android-0.5.12_b27ceaddf5c018f74f78bfc97fcabd9f1f8aca88.jar" />
+        sha1="1d522316717f7d93b79459b5b5f8b7f7be7538b3">
+        <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\com.wilddog.client-wilddog-video-android-0.5.13_6de7f7b0a0d988c91a7522c4c7e9b1e4090de113.jar" />
     </item>
     <item
         is-multidex="false"
