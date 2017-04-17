@@ -11,17 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83bb8c9a-8bbb-4298-a8c6-5683589e5216" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/wilddog_video_android_0_5_13.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
     </list>
     <ignored path="video-demo-android-conversation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,14 +60,14 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+            <state relative-caret-position="473">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
-                <element signature="e#2211#2260#2" expanded="true" />
-                <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-                <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-                <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-                <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+                <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+                <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+                <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+                <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+                <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
               </folding>
             </state>
           </provider>
@@ -84,7 +76,7 @@
       <file leaf-file-name="ConversationActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
+            <state relative-caret-position="4290">
               <caret line="186" column="99" selection-start-line="186" selection-start-column="99" selection-end-line="186" selection-end-column="99" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -95,14 +87,14 @@
       </file>
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="1200">
               <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="45" selection-end-column="19" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-manifest">
+            <state />
           </provider>
         </entry>
       </file>
@@ -111,15 +103,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="720">
               <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3748#3749#0" expanded="false" />
-                <element signature="e#3791#3792#0" expanded="false" />
-                <element signature="e#3849#3850#0" expanded="false" />
-                <element signature="e#3892#3893#0" expanded="false" />
-                <element signature="e#3950#3951#0" expanded="false" />
-                <element signature="e#3982#3983#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1511,7 +1495,7 @@
       <map>
         <entry key="D:/temp/lib-android-im" value="8763811619846" />
         <entry key="$PROJECT_DIR$" value="4458249896042" />
-        <entry key="D:\wilddogsample\video-demo-android-conversation" value="4459893060649" />
+        <entry key="D:\wilddogsample\video-demo-android-conversation" value="4460307458561" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1867,8 +1851,8 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/UserListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -1902,27 +1886,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="video-demo-android-conversation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="video-demo-android-conversation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2045,7 +2010,26 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video-demo-android-conversation" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video-demo-android-conversation" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -2341,10 +2325,10 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34153542" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34153542" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32874015" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2405,14 +2389,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4290">
+          <caret line="186" column="99" selection-start-line="186" selection-start-column="99" selection-end-line="186" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="45" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/UserListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding>
+            <marker date="1483955142448" expanded="false" signature="252:300" ph="com.neenbedankt.gradle.plugins:android-apt:1.8 [194]" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1680">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
-            <element signature="e#2211#2260#2" expanded="true" />
-            <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
           </folding>
         </state>
       </provider>
@@ -2431,15 +2465,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3748#3749#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3849#3850#0" expanded="false" />
-            <element signature="e#3892#3893#0" expanded="false" />
-            <element signature="e#3950#3951#0" expanded="false" />
-            <element signature="e#3982#3983#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2458,11 +2484,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2211#2260#2" expanded="true" />
-            <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
           </folding>
         </state>
       </provider>
@@ -2481,15 +2507,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3748#3749#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3849#3850#0" expanded="false" />
-            <element signature="e#3892#3893#0" expanded="false" />
-            <element signature="e#3950#3951#0" expanded="false" />
-            <element signature="e#3982#3983#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2508,11 +2526,11 @@
         <state relative-caret-position="1680">
           <caret line="56" column="60" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
           <folding>
-            <element signature="e#2211#2260#2" expanded="true" />
-            <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
           </folding>
         </state>
       </provider>
@@ -2531,15 +2549,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3748#3749#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3849#3850#0" expanded="false" />
-            <element signature="e#3892#3893#0" expanded="false" />
-            <element signature="e#3950#3951#0" expanded="false" />
-            <element signature="e#3982#3983#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2558,11 +2568,11 @@
         <state relative-caret-position="0">
           <caret line="56" column="60" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
           <folding>
-            <element signature="e#2211#2260#2" expanded="true" />
-            <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
           </folding>
         </state>
       </provider>
@@ -2581,15 +2591,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3748#3749#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3849#3850#0" expanded="false" />
-            <element signature="e#3892#3893#0" expanded="false" />
-            <element signature="e#3950#3951#0" expanded="false" />
-            <element signature="e#3982#3983#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2608,11 +2610,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2211#2260#2" expanded="true" />
-            <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
           </folding>
         </state>
       </provider>
@@ -2631,15 +2633,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3748#3749#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3849#3850#0" expanded="false" />
-            <element signature="e#3892#3893#0" expanded="false" />
-            <element signature="e#3950#3951#0" expanded="false" />
-            <element signature="e#3982#3983#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2658,11 +2652,11 @@
         <state relative-caret-position="0">
           <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
           <folding>
-            <element signature="e#2211#2260#2" expanded="true" />
-            <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
           </folding>
         </state>
       </provider>
@@ -2681,15 +2675,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3748#3749#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3849#3850#0" expanded="false" />
-            <element signature="e#3892#3893#0" expanded="false" />
-            <element signature="e#3950#3951#0" expanded="false" />
-            <element signature="e#3982#3983#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2697,15 +2683,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3748#3749#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3849#3850#0" expanded="false" />
-            <element signature="e#3892#3893#0" expanded="false" />
-            <element signature="e#3950#3951#0" expanded="false" />
-            <element signature="e#3982#3983#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2728,29 +2706,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="1200">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="45" selection-end-column="19" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/0.5.13/jars/classes.jar!/com/wilddog/video/WilddogVideoView.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1198">
           <caret line="89" column="16" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
-          <folding>
-            <element signature="e#2627#2628#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2764,7 +2737,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
+        <state relative-caret-position="4290">
           <caret line="186" column="99" selection-start-line="186" selection-start-column="99" selection-end-line="186" selection-end-column="99" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2784,14 +2757,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+        <state relative-caret-position="473">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
-            <element signature="e#2211#2260#2" expanded="true" />
-            <marker date="1491982775749" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
-            <marker date="1491982775749" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1901:1919" ph="junit:junit:4.12 [2041] [+1 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1932:1967" ph="com.jakewharton:butterknife:8.4.0 [120] [+2 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="1976:2020" ph="com.jakewharton:butterknife-compiler:8.4.0 [372] [+6 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2033:2074" ph="com.android.support:appcompat-v7:24.2.1 [5577] [+9 extra dependencies, check tooltip]" />
+            <marker date="1492397173661" expanded="false" signature="2087:2136" ph="com.wilddog.client:wilddog-video-android:0.5.15 [2977] [+13 extra dependencies, check tooltip]" />
           </folding>
         </state>
       </provider>
