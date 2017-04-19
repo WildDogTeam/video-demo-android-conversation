@@ -167,6 +167,7 @@ public class ConversationActivity extends AppCompatActivity {
                     remoteStream.enableAudio(false);
                     //在视频展示控件中播放其他端媒体流
                     remoteStream.attach(remoteView);
+                    btnInvite.setText("用户已加入");
                 }
 
                 @Override
@@ -230,7 +231,7 @@ public class ConversationActivity extends AppCompatActivity {
 
 
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
-        LocalStreamOptions options = builder.height(240).width(320).build();
+        LocalStreamOptions options = builder.height(720).width(1280).build();
         //创建本地视频流，通过video对象获取本地视频流
         localStream = video.createLocalStream(options, new CompleteListener() {
             @Override

@@ -66,15 +66,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\exploded-aar\com.wilddog.client\wilddog-video-android\0.5.13\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="1d522316717f7d93b79459b5b5f8b7f7be7538b3">
-        <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\com.wilddog.client-wilddog-video-android-0.5.13_6de7f7b0a0d988c91a7522c4c7e9b1e4090de113.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\Administrator\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
         jumboMode="false"
         optimize="true"
@@ -90,6 +81,15 @@
         revision="24.0.0"
         sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
         <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\jackson-core-2.2.2_cdf2755fbc282bcba497937bfd17a11e2da6266e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\exploded-aar\com.wilddog.client\wilddog-video-android\0.5.15\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.0"
+        sha1="c5de65680b9606ce1046da0c4a0396590b74a55f">
+        <dex dex="D:\wilddogsample\video-demo-android-conversation\app\build\intermediates\pre-dexed\debug\com.wilddog.client-wilddog-video-android-0.5.15_702bf5d74b5a6075aa5383d62dbcfb1f51e6b4cb.jar" />
     </item>
     <item
         is-multidex="false"
