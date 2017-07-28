@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,21 +20,22 @@ import android.widget.Toast;
 import com.wilddog.client.SyncReference;
 import com.wilddog.client.WilddogSync;
 import com.wilddog.video.Conversation;
+import com.wilddog.video.ConversationCallback;
 import com.wilddog.video.IncomingInvite;
 import com.wilddog.video.LocalStream;
+import com.wilddog.video.LocalStreamOptions;
 import com.wilddog.video.OutgoingInvite;
 import com.wilddog.video.Participant;
 import com.wilddog.video.RemoteStream;
+import com.wilddog.video.VideoError;
+import com.wilddog.video.VideoErrorCode;
 import com.wilddog.video.WilddogVideo;
 import com.wilddog.video.WilddogVideoClient;
 import com.wilddog.video.WilddogVideoView;
 import com.wilddog.video.WilddogVideoViewLayout;
 import com.wilddog.video.bean.ConnectOptions;
-import com.wilddog.video.bean.LocalStreamOptions;
-import com.wilddog.video.bean.VideoException;
-import com.wilddog.video.bean.VideoExceptionCode;
+
 import com.wilddog.video.listener.CompleteListener;
-import com.wilddog.video.listener.ConversationCallback;
 import com.wilddog.wilddogauth.WilddogAuth;
 
 import java.util.HashMap;
@@ -56,6 +58,8 @@ public class ConversationActivity extends AppCompatActivity {
     private static final int REMOTE_Y = 0;
     private static final int REMOTE_WIDTH = 50;
     private static final int REMOTE_HEIGHT = 100;
+
+    private static final String TAG = ConversationActivity.class.getSimpleName();
 
     @BindView(R.id.btn_invite)
     Button btnInvite;
@@ -83,6 +87,8 @@ public class ConversationActivity extends AppCompatActivity {
     //AlertDialog列表
     private Map<IncomingInvite, AlertDialog> incomingDialogMap;
 
+    String errMsg = "";
+
     private WilddogVideoClient.Listener inviteListener = new WilddogVideoClient.Listener() {
         @Override
         public void onIncomingInvite(WilddogVideoClient wilddogVideoClient, final IncomingInvite incomingInvite) {
@@ -103,7 +109,7 @@ public class ConversationActivity extends AppCompatActivity {
                     ConnectOptions connectOptions = new ConnectOptions(localStream, "");
                     incomingInvite.accept(connectOptions, new ConversationCallback() {
                         @Override
-                        public void onConversation(Conversation conversation, VideoException exception) {
+                        public void onConversation(Conversation conversation, final VideoError exception) {
                             //对方接受邀请并成功建立会话，conversation不为空，exception为空
                             if (conversation != null) {
                                 mConversation = conversation;
@@ -112,6 +118,25 @@ public class ConversationActivity extends AppCompatActivity {
 
                             } else {
                                 //处理会话建立失败逻辑
+                                Log.e(TAG, "Invite failured ! :" + exception.getMessage());
+                                //对方拒绝时，exception不为空
+
+                                if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_FAILED) {
+                                    errMsg = "对方拒绝：" + exception.getMessage();
+
+                                } else if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_IGNORED) {
+                                    errMsg = "对方繁忙：" + exception.getMessage();
+                                    outgoingInvite.cancel();
+                                }else {
+                                    errMsg = exception.getMessage();}
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(ConversationActivity.this, errMsg, Toast.LENGTH_SHORT).show();
+                                        btnInvite.setText("用户列表");
+                                        Log.e(TAG, "Invite failured ! the detail :" + exception.getMessage());
+                                    }
+                                });
                             }
 
                         }
@@ -144,15 +169,15 @@ public class ConversationActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onConnectFailed(Conversation conversation, VideoException e) {
+        public void onConnectFailed(Conversation conversation, VideoError e) {
             //
-            if(e.getErrorCode()== VideoExceptionCode.VIDEO_CLIENT_REGISTRATION_FAILED && e.getMessage().equals("VIDEO_CLIENT_REGISTRATION_FAILED:App is stopped for resource limit")){
+            if(e.getErrorCode()== VideoErrorCode.VIDEO_CLIENT_REGISTRATION_FAILED && e.getMessage().equals("VIDEO_CLIENT_REGISTRATION_FAILED:App is stopped for resource limit")){
                 Toast.makeText(ConversationActivity.this,"video功能未开启或者已停止服务",Toast.LENGTH_SHORT).show();
             }
         }
 
         @Override
-        public void onDisconnected(Conversation conversation, VideoException e) {
+        public void onDisconnected(Conversation conversation, VideoError e) {
 
         }
 
@@ -167,16 +192,36 @@ public class ConversationActivity extends AppCompatActivity {
                     remoteStream.enableAudio(false);
                     //在视频展示控件中播放其他端媒体流
                     remoteStream.attach(remoteView);
-                    btnInvite.setText("用户已加入");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            btnInvite.setText("用户已加入");
+                        }
+                    });
+
                 }
 
                 @Override
-                public void onConnectFailed(Participant participant, VideoException e) {
+                public void onConnectFailed(Participant participant, VideoError e) {
 
                 }
 
                 @Override
-                public void onDisconnected(Participant participant, VideoException e) {
+                public void onDisconnected(Participant participant, VideoError e) {
+                    Log.e(TAG, "Participant:onDisconnected");
+                    if (e != null) {
+                        Log.e(TAG, "Participant onDisconnected failured,the detail:" + e.getMessage());
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            btnInvite.setText("用户列表");
+                        }
+                    });
+                    if( mConversation!=null){
+                        mConversation.disconnect();
+                        mConversation = null;
+                    }
 
                 }
 
@@ -185,10 +230,17 @@ public class ConversationActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onParticipantDisconnected(Conversation conversation, Participant participant) {
-            Toast.makeText(ConversationActivity.this, "用户：" + participant.getParticipantId() +
-                    "离开会话", Toast.LENGTH_SHORT).show();
-            btnInvite.setText("用户列表");
+        public void onParticipantDisconnected(Conversation conversation, final Participant participant) {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(ConversationActivity.this, "用户：" + participant.getParticipantId() +
+                            "离开会话", Toast.LENGTH_SHORT).show();
+                    btnInvite.setText("用户列表");
+                }
+            });
+
             mConversation.disconnect();
 
         }
@@ -231,14 +283,12 @@ public class ConversationActivity extends AppCompatActivity {
 
 
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
-        LocalStreamOptions options = builder.height(720).width(1280).build();
+        LocalStreamOptions options = builder.setDimension(LocalStreamOptions.Dimension.DIMENSION_480P).build();
         //创建本地视频流，通过video对象获取本地视频流
-        localStream = video.createLocalStream(options, new CompleteListener() {
-            @Override
-            public void onCompleted(VideoException e) {
-
-            }
-        });
+        localStream = video.createLocalStream(options);
+        //开启音频/视频，设置为 false 则关闭声音或者视频画面
+        localStream.enableAudio(true);
+        localStream.enableVideo(true);
         //为视频流绑定播放控件
         localStream.attach(localView);
 
@@ -283,6 +333,7 @@ public class ConversationActivity extends AppCompatActivity {
             mConversation.disconnect();
             mConversation=null;
         }
+        btnInvite.setText("用户列表");
     }
 
 
@@ -311,9 +362,9 @@ public class ConversationActivity extends AppCompatActivity {
         ConnectOptions options = new ConnectOptions(localStream, "chaih");
         //inviteToConversation 方法会返回一个OutgoingInvite对象，
         //通过OutgoingInvite对象可以进行取消邀请操作
-        outgoingInvite = client.inviteToConversation(participant, options, new ConversationCallback() {
+        OutgoingInvite invite = client.inviteToConversation(participant, options, new ConversationCallback() {
             @Override
-            public void onConversation(Conversation conversation, VideoException exception) {
+            public void onConversation(Conversation conversation, final VideoError exception) {
                 if (conversation != null) {
                     //对方接受邀请并成功建立会话，conversation不为空，exception为空
                     mConversation = conversation;
@@ -321,10 +372,33 @@ public class ConversationActivity extends AppCompatActivity {
                     mConversation.setConversationListener(conversationListener);
                 } else {
                     //对方拒绝时，exception不为空
+                    Log.e(TAG, "Invite failured ! :" + exception.getMessage());
+                    //对方拒绝时，exception不为空
+
+                    if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_FAILED) {
+                        errMsg = "对方拒绝：" + exception.getMessage();
+
+                    } else if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_IGNORED) {
+                        errMsg = "对方繁忙：" + exception.getMessage();
+                        outgoingInvite.cancel();
+                    }else {
+                        errMsg = exception.getMessage();}
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ConversationActivity.this, errMsg, Toast.LENGTH_SHORT).show();
+                            btnInvite.setText("用户列表");
+                            Log.e(TAG, "Invite failured ! the detail :" + exception.getMessage());
+                        }
+                    });
                 }
 
             }
         });
+        if (invite == null) {
+            return;
+        }
+        outgoingInvite = invite;
     }
 
     @Override
