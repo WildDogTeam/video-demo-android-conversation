@@ -2,11 +2,7 @@ package com.wilddog.quickstart;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -34,8 +30,6 @@ import com.wilddog.video.WilddogVideoClient;
 import com.wilddog.video.WilddogVideoView;
 import com.wilddog.video.WilddogVideoViewLayout;
 import com.wilddog.video.bean.ConnectOptions;
-
-import com.wilddog.video.listener.CompleteListener;
 import com.wilddog.wilddogauth.WilddogAuth;
 
 import java.util.HashMap;
@@ -189,7 +183,7 @@ public class ConversationActivity extends AppCompatActivity {
                 @Override
                 public void onStreamAdded(RemoteStream remoteStream) {
                     //有参与者成功加入会话后，会触发此方法
-                    remoteStream.enableAudio(false);
+                    remoteStream.enableAudio(true);
                     //在视频展示控件中播放其他端媒体流
                     remoteStream.attach(remoteView);
                     runOnUiThread(new Runnable() {
