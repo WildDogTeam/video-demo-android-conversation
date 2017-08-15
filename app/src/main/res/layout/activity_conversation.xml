@@ -62,7 +62,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:gravity="center|bottom"
             android:orientation="horizontal"
@@ -86,10 +86,112 @@
                 android:text="挂断"
                 android:visibility="visible"
                 />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            >
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/tv_local_dimensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="dimension"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_local_fps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="fps"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_local_sentbytes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="sent"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_local_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="rate"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/tv_remote_dimensions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="dimension"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_remote_fps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="fps"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_remote_recbytes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="received"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_remote_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="rate"
+                    android:textColor="@color/colorTextRed"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
-
 
     </LinearLayout>
 

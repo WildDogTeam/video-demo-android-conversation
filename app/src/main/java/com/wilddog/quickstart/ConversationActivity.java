@@ -15,23 +15,20 @@ import android.widget.Toast;
 
 import com.wilddog.client.SyncReference;
 import com.wilddog.client.WilddogSync;
+import com.wilddog.video.CallStatus;
 import com.wilddog.video.Conversation;
-import com.wilddog.video.ConversationCallback;
-import com.wilddog.video.IncomingInvite;
 import com.wilddog.video.LocalStream;
 import com.wilddog.video.LocalStreamOptions;
-import com.wilddog.video.OutgoingInvite;
-import com.wilddog.video.Participant;
 import com.wilddog.video.RemoteStream;
-import com.wilddog.video.VideoError;
-import com.wilddog.video.VideoErrorCode;
 import com.wilddog.video.WilddogVideo;
-import com.wilddog.video.WilddogVideoClient;
+import com.wilddog.video.WilddogVideoError;
 import com.wilddog.video.WilddogVideoView;
 import com.wilddog.video.WilddogVideoViewLayout;
-import com.wilddog.video.bean.ConnectOptions;
+import com.wilddog.video.core.stats.LocalStreamStatsReport;
+import com.wilddog.video.core.stats.RemoteStreamStatsReport;
 import com.wilddog.wilddogauth.WilddogAuth;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +52,8 @@ public class ConversationActivity extends AppCompatActivity {
 
     private static final String TAG = ConversationActivity.class.getSimpleName();
 
+    private boolean isInConversation = false;
+
     @BindView(R.id.btn_invite)
     Button btnInvite;
 
@@ -73,174 +72,111 @@ public class ConversationActivity extends AppCompatActivity {
     @BindView(R.id.remote_video_view)
     WilddogVideoView remoteView;
 
-    private WilddogVideoClient client;
+    @BindView(R.id.tv_local_dimensions)
+    TextView tvLocalDimensions;
+    @BindView(R.id.tv_local_fps)
+    TextView tvLocalFps;
+    @BindView(R.id.tv_local_rate)
+    TextView tvLocalRate;
+    @BindView(R.id.tv_local_sentbytes)
+    TextView tvLocalSendBytes;
+    @BindView(R.id.tv_remote_dimensions)
+    TextView tvRemoteDimensions;
+    @BindView(R.id.tv_remote_fps)
+    TextView tvRemoteFps;
+    @BindView(R.id.tv_remote_rate)
+    TextView tvRemoteRate;
+    @BindView(R.id.tv_remote_recbytes)
+    TextView tvRemoteRecBytes;
+
+
     private WilddogVideo video;
     private LocalStream localStream;
     private Conversation mConversation;
-    private OutgoingInvite outgoingInvite;
+    DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+    private Map<Conversation, AlertDialog> conversationAlertDialogMap;
     //AlertDialog列表
-    private Map<IncomingInvite, AlertDialog> incomingDialogMap;
-
-    String errMsg = "";
-
-    private WilddogVideoClient.Listener inviteListener = new WilddogVideoClient.Listener() {
+    private WilddogVideo.Listener inviteListener = new WilddogVideo.Listener() {
         @Override
-        public void onIncomingInvite(WilddogVideoClient wilddogVideoClient, final IncomingInvite incomingInvite) {
+        public void onCalled(final Conversation conversation, String s) {
+            mConversation = conversation;
             AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);
             builder.setMessage("邀请你加入会话");
             builder.setTitle("加入邀请");
             builder.setNegativeButton("拒绝邀请", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    incomingInvite.reject();
+                    mConversation.reject();
                 }
             });
             builder.setPositiveButton("确认加入", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    incomingDialogMap.remove(incomingInvite);
-                    ConnectOptions connectOptions = new ConnectOptions(localStream, "");
-                    incomingInvite.accept(connectOptions, new ConversationCallback() {
-                        @Override
-                        public void onConversation(Conversation conversation, final VideoError exception) {
-                            //对方接受邀请并成功建立会话，conversation不为空，exception为空
-                            if (conversation != null) {
-                                mConversation = conversation;
-                                //获取到conversation后，设置ConversationListener
-                                mConversation.setConversationListener(conversationListener);
-
-                            } else {
-                                //处理会话建立失败逻辑
-                                Log.e(TAG, "Invite failured ! :" + exception.getMessage());
-                                //对方拒绝时，exception不为空
-
-                                if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_FAILED) {
-                                    errMsg = "对方拒绝：" + exception.getMessage();
-
-                                } else if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_IGNORED) {
-                                    errMsg = "对方繁忙：" + exception.getMessage();
-                                    outgoingInvite.cancel();
-                                }else {
-                                    errMsg = exception.getMessage();}
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(ConversationActivity.this, errMsg, Toast.LENGTH_SHORT).show();
-                                        btnInvite.setText("用户列表");
-                                        Log.e(TAG, "Invite failured ! the detail :" + exception.getMessage());
-                                    }
-                                });
-                            }
-
-                        }
-                    });
-
+                    conversationAlertDialogMap.remove(conversation);
+                    mConversation.accept(localStream);
+                    isInConversation = true;
+                    mConversation.setConversationListener(conversationListener);
                 }
             });
 
             AlertDialog alertDialog = builder.create();
             alertDialog.setCanceledOnTouchOutside(false);
             alertDialog.show();
-            incomingDialogMap.put(incomingInvite, alertDialog);
+            conversationAlertDialogMap.put(conversation, alertDialog);
         }
 
         @Override
-        public void onIncomingInviteCanceled(WilddogVideoClient wilddogVideoClient, IncomingInvite incomingInvite) {
-            AlertDialog alertDialog = incomingDialogMap.get(incomingInvite);
-            alertDialog.dismiss();
-            alertDialog = null;
-            incomingDialogMap.remove(incomingInvite);
-        }
+        public void onTokenError(WilddogVideoError wilddogVideoError) {
 
+        }
 
     };
 
-    Conversation.Listener conversationListener = new Conversation.Listener() {
+    private Conversation.StatsListener statsListener = new Conversation.StatsListener() {
         @Override
-        public void onConnected(Conversation conversation) {
-
+        public void onLocalStreamStatsReport(LocalStreamStatsReport localStreamStatsReport) {
+            changeLocalData(localStreamStatsReport);
         }
 
         @Override
-        public void onConnectFailed(Conversation conversation, VideoError e) {
-            //
-            if(e.getErrorCode()== VideoErrorCode.VIDEO_CLIENT_REGISTRATION_FAILED && e.getMessage().equals("VIDEO_CLIENT_REGISTRATION_FAILED:App is stopped for resource limit")){
-                Toast.makeText(ConversationActivity.this,"video功能未开启或者已停止服务",Toast.LENGTH_SHORT).show();
+        public void onRemoteStreamStatsReport(RemoteStreamStatsReport remoteStreamStatsReport) {
+            changeRemoteData(remoteStreamStatsReport);
+        }
+    };
+
+    public void changeLocalData(final LocalStreamStatsReport localStats) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvLocalDimensions.setText("dimension:" + localStats.getWidth() + "x" + localStats.getHeight());
+                tvLocalFps.setText("fps:" + localStats.getFps());
+                tvLocalRate.setText("rate:" + localStats.getBitsSentRate() + "Kb/s");
+                tvLocalSendBytes.setText("sent:" + convertToMB(localStats.getBytesSent()) + "MB");
             }
-        }
+        });
 
-        @Override
-        public void onDisconnected(Conversation conversation, VideoError e) {
+    }
 
-        }
+    public void changeRemoteData(final RemoteStreamStatsReport remoteStats) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvRemoteDimensions.setText("dimension:" + remoteStats.getWidth() + "x" + remoteStats.getHeight());
+                tvRemoteFps.setText("fps:" + remoteStats.getFps());
+                tvRemoteRecBytes.setText("received:" + convertToMB(remoteStats.getBytesReceived()) + "MB");
+                tvRemoteRate.setText("rate:" + remoteStats.getBitsReceivedRate() + "Kb/s" + " delay" + remoteStats.getDelay() + "ms");
+            }
+        });
 
-        @Override
-        public void onParticipantConnected(Conversation conversation, Participant participant) {
-            outgoingInvite=null;
+    }
 
-            participant.setListener(new Participant.Listener() {
-                @Override
-                public void onStreamAdded(RemoteStream remoteStream) {
-                    //有参与者成功加入会话后，会触发此方法
-                    remoteStream.enableAudio(true);
-                    //在视频展示控件中播放其他端媒体流
-                    remoteStream.attach(remoteView);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            btnInvite.setText("用户已加入");
-                        }
-                    });
+    public String convertToMB(long value) {
+        float result = Float.parseFloat(String.valueOf(value)) / (1024 * 1024);
+        return decimalFormat.format(result);
+    }
 
-                }
-
-                @Override
-                public void onConnectFailed(Participant participant, VideoError e) {
-
-                }
-
-                @Override
-                public void onDisconnected(Participant participant, VideoError e) {
-                    Log.e(TAG, "Participant:onDisconnected");
-                    if (e != null) {
-                        Log.e(TAG, "Participant onDisconnected failured,the detail:" + e.getMessage());
-                    }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            btnInvite.setText("用户列表");
-                        }
-                    });
-                    if( mConversation!=null){
-                        mConversation.disconnect();
-                        mConversation = null;
-                    }
-
-                }
-
-            });
-
-        }
-
-        @Override
-        public void onParticipantDisconnected(Conversation conversation, final Participant participant) {
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(ConversationActivity.this, "用户：" + participant.getParticipantId() +
-                            "离开会话", Toast.LENGTH_SHORT).show();
-                    btnInvite.setText("用户列表");
-                }
-            });
-
-            mConversation.disconnect();
-
-        }
-
-
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -265,30 +201,26 @@ public class ConversationActivity extends AppCompatActivity {
         int startIndex = path.indexOf("https://") == 0 ? 8 : 7;
         String appid = path.substring(startIndex, path.length() - 14);
         //初始化Video
-        WilddogVideo.initializeWilddogVideo(getApplicationContext(), appid);
-        //初始化Video 时需要初始化两个类，Video和ConversationClient类，分别对其进行初始化
-        //初始化Video，传入Context
-
+        WilddogVideo.initialize(getApplicationContext(), appid, WilddogAuth.getInstance().getCurrentUser().getToken(false).getResult().getToken());
         //获取video对象
         video = WilddogVideo.getInstance();
-        //获取client对象
-        client = video.getClient();
+
         initVideoRender();
 
 
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
-        LocalStreamOptions options = builder.setDimension(LocalStreamOptions.Dimension.DIMENSION_480P).build();
+        LocalStreamOptions options = builder.dimension(LocalStreamOptions.Dimension.DIMENSION_480P).build();
         //创建本地视频流，通过video对象获取本地视频流
         localStream = video.createLocalStream(options);
         //开启音频/视频，设置为 false 则关闭声音或者视频画面
-        localStream.enableAudio(true);
-        localStream.enableVideo(true);
+        //localStream.enableAudio(true);
+        // localStream.enableVideo(true);
         //为视频流绑定播放控件
         localStream.attach(localView);
 
-        incomingDialogMap = new HashMap<>();
+        conversationAlertDialogMap = new HashMap<>();
         //在使用inviteToConversation方法前需要先设置会话邀请监听，否则使用邀请功能会抛出IllegalStateException异常
-        this.client.setInviteListener(inviteListener);
+        video.setListener(inviteListener);
     }
 
     //初始化视频展示控件
@@ -309,23 +241,16 @@ public class ConversationActivity extends AppCompatActivity {
     public void invite() {
 
         //取消发起会话邀请
-        if (outgoingInvite != null) {
-            outgoingInvite.cancel();
-            btnInvite.setText("用户列表");
-            outgoingInvite = null;
-        } else {
-
-            showLoginUsers();
-        }
+        showLoginUsers();
 
     }
 
     @OnClick(R.id.btn_invite_cancel)
     public void inviteCancel() {
 
-        if (mConversation != null){
-            mConversation.disconnect();
-            mConversation=null;
+        if (mConversation != null) {
+            mConversation.close();
+            mConversation = null;
         }
         btnInvite.setText("用户列表");
     }
@@ -339,7 +264,7 @@ public class ConversationActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            //选取用户列表中的用户，获得其 Wilddog ID
+            //选取用户列表中的用户，获得其 Wilddog UID
             String participant = data.getStringExtra("participant");
             //调用inviteToConversation 方法发起会话
             inviteToConversation(participant);
@@ -351,56 +276,92 @@ public class ConversationActivity extends AppCompatActivity {
     private void inviteToConversation(String participant) {
 
         //创建连接参数对象
-        //localStream 为video.createLocalStream()获取的本地视频流
-        //第二个参数为用户自定义的数据，类型为字符串
-        ConnectOptions options = new ConnectOptions(localStream, "chaih");
-        //inviteToConversation 方法会返回一个OutgoingInvite对象，
-        //通过OutgoingInvite对象可以进行取消邀请操作
-        OutgoingInvite invite = client.inviteToConversation(participant, options, new ConversationCallback() {
-            @Override
-            public void onConversation(Conversation conversation, final VideoError exception) {
-                if (conversation != null) {
-                    //对方接受邀请并成功建立会话，conversation不为空，exception为空
-                    mConversation = conversation;
+        mConversation = video.call(participant, localStream, "data");
+        mConversation.setConversationListener(conversationListener);
 
-                    mConversation.setConversationListener(conversationListener);
-                } else {
-                    //对方拒绝时，exception不为空
-                    Log.e(TAG, "Invite failured ! :" + exception.getMessage());
-                    //对方拒绝时，exception不为空
+    }
 
-                    if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_FAILED) {
-                        errMsg = "对方拒绝：" + exception.getMessage();
-
-                    } else if (exception.getErrorCode() == VideoErrorCode.VIDEO_CONVERSATION_INVITATION_IGNORED) {
-                        errMsg = "对方繁忙：" + exception.getMessage();
-                        outgoingInvite.cancel();
-                    }else {
-                        errMsg = exception.getMessage();}
+    private Conversation.Listener conversationListener = new Conversation.Listener() {
+        @Override
+        public void onCallResponse(CallStatus callStatus) {
+            switch (callStatus) {
+                case ACCEPTED:
+                    isInConversation = true;
+                    break;
+                case REJECTED:
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(ConversationActivity.this, errMsg, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ConversationActivity.this, "对方拒绝你的邀请", Toast.LENGTH_SHORT).show();
                             btnInvite.setText("用户列表");
-                            Log.e(TAG, "Invite failured ! the detail :" + exception.getMessage());
                         }
                     });
-                }
-
+                    break;
+                case BUSY:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ConversationActivity.this, "对方正在通话中,稍后再呼叫", Toast.LENGTH_SHORT).show();
+                            btnInvite.setText("用户列表");
+                        }
+                    });
+                    break;
+                case TIMEOUT:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ConversationActivity.this, "呼叫对方超时,请稍后再呼叫", Toast.LENGTH_SHORT).show();
+                            btnInvite.setText("用户列表");
+                        }
+                    });
+                    break;
+                default:
+                    break;
             }
-        });
-        if (invite == null) {
-            return;
         }
-        outgoingInvite = invite;
-    }
+
+        @Override
+        public void onStreamReceived(RemoteStream remoteStream) {
+            remoteStream.attach(remoteView);
+            mConversation.setStatsListener(statsListener);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    btnInvite.setText("用户已加入");
+                }
+            });
+        }
+
+        @Override
+        public void onClosed() {
+            Log.e(TAG, "onClosed");
+            isInConversation = false;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(ConversationActivity.this, "对方挂断", Toast.LENGTH_SHORT).show();
+                    btnInvite.setText("用户列表");
+                }
+            });
+
+        }
+
+        @Override
+        public void onError(WilddogVideoError wilddogVideoError) {
+            if (wilddogVideoError != null) {
+                Toast.makeText(ConversationActivity.this, "通话中出错,请查看日志", Toast.LENGTH_SHORT).show();
+                Log.e("error", wilddogVideoError.getMessage());
+                btnInvite.setText("用户列表");
+                isInConversation = false;
+            }
+        }
+    };
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //需要离开会话时调用此方法，并做资源释放和其他自定义操作
-        localStream.detach();
-        localStream.close();
         if (localView != null) {
             localView.release();
             localView = null;
@@ -410,10 +371,13 @@ public class ConversationActivity extends AppCompatActivity {
             remoteView = null;
         }
         if (mConversation != null) {
-            mConversation.disconnect();
+            mConversation.close();
+        }
+        if (localStream != null) {
+            if (!localStream.isClosed()) {
+                localStream.close();
+            }
         }
 
-        client.dispose();
-        video.dispose();
     }
 }
