@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 0; // 请求码
     private String mAppId;
     private WilddogAuth auth;
+    private boolean isInlogin =false;
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.RECORD_AUDIO,
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_login_anonymously)
     public void login() {
+        if(isInlogin){return;}
+        isInlogin = true;
         mAppId = etAppId.getText().toString();
         if (TextUtils.isEmpty(mAppId)) {
             Toast.makeText(MainActivity.this, "请输入你的AppId", Toast.LENGTH_SHORT).show();
@@ -98,10 +102,15 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
                         intent.putExtra("app_id", mAppId);
                         startActivity(intent);
+                        isInlogin = false;
+                        finish();
                     }
                 } else {
                     //处理失败
                     //throw new RuntimeException("auth 失败" + task.getException().getMessage());
+                    Log.e("error",task.getException().getMessage());
+                    Toast.makeText(MainActivity.this,"登录失败!",Toast.LENGTH_SHORT).show();
+                    isInlogin = false;
                 }
             }
         });
