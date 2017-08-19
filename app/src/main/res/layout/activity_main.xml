@@ -3,39 +3,9 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center_horizontal"
+              android:gravity="center"
               android:orientation="vertical"
               tools:context="com.wilddog.quickstart.MainActivity">
-
-    <TextView
-        android:id="@+id/tv_prompt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="请在控制面板-身份认证-登录方式中\n开启匿名登录功能,并且使用的是video的appId"
-        android:textColor="@color/colorTextRed"
-        android:visibility="invisible"/>
-
-    <View
-        style="@style/view_hori"
-        />
-
-    <EditText
-        android:id="@+id/et_app_id"
-        style="@style/EditTextInput"
-        android:hint="请输入应用 ID"
-        android:imeActionId="@+id/login"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionUnspecified"
-        android:inputType="text"
-        android:text=""
-
-        />
-
-    <View
-        style="@style/view_hori"
-        />
 
     <Button
 

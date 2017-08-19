@@ -183,11 +183,10 @@ public class ConversationActivity extends AppCompatActivity {
         // Set window styles for fullscreen-window size. Needs to be done before
         // adding content.
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams
-                .FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams
-                .FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View
-                .SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams
+                .FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View
+                .SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.activity_conversation);
 
         ButterKnife.bind(this);
@@ -195,19 +194,20 @@ public class ConversationActivity extends AppCompatActivity {
 
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
         tvUid.setText(uid);
-
-        SyncReference reference = WilddogSync.getInstance().getReference();
-        String path = reference.getRoot().toString();
-        int startIndex = path.indexOf("https://") == 0 ? 8 : 7;
-        String appid = path.substring(startIndex, path.length() - 14);
         //初始化Video
-        WilddogVideo.initialize(getApplicationContext(), appid, WilddogAuth.getInstance().getCurrentUser().getToken(false).getResult().getToken());
+        WilddogVideo.initialize(getApplicationContext(), Constants.VIDEO_APPID, WilddogAuth.getInstance().getCurrentUser().getToken(false).getResult()
+                .getToken());
         //获取video对象
         video = WilddogVideo.getInstance();
 
         initVideoRender();
+        createAndShowLocalStream();
+        conversationAlertDialogMap = new HashMap<>();
+        //在使用inviteToConversation方法前需要先设置会话邀请监听，否则使用邀请功能会抛出IllegalStateException异常
+        video.setListener(inviteListener);
+    }
 
-
+    private void createAndShowLocalStream() {
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
         LocalStreamOptions options = builder.dimension(LocalStreamOptions.Dimension.DIMENSION_480P).build();
         //创建本地视频流，通过video对象获取本地视频流
@@ -217,10 +217,6 @@ public class ConversationActivity extends AppCompatActivity {
         // localStream.enableVideo(true);
         //为视频流绑定播放控件
         localStream.attach(localView);
-
-        conversationAlertDialogMap = new HashMap<>();
-        //在使用inviteToConversation方法前需要先设置会话邀请监听，否则使用邀请功能会抛出IllegalStateException异常
-        video.setListener(inviteListener);
     }
 
     //初始化视频展示控件
@@ -228,8 +224,7 @@ public class ConversationActivity extends AppCompatActivity {
         //获取EglBase对象
 
         //初始化视频展示控件位置，大小
-        localViewLayout.setPosition(LOCAL_X_CONNECTED, LOCAL_Y_CONNECTED, LOCAL_WIDTH_CONNECTED,
-                LOCAL_HEIGHT_CONNECTED);
+        localViewLayout.setPosition(LOCAL_X_CONNECTED, LOCAL_Y_CONNECTED, LOCAL_WIDTH_CONNECTED, LOCAL_HEIGHT_CONNECTED);
         localView.setZOrderMediaOverlay(true);
         localView.setMirror(true);
 
@@ -248,9 +243,15 @@ public class ConversationActivity extends AppCompatActivity {
     @OnClick(R.id.btn_invite_cancel)
     public void inviteCancel() {
 
+        closeConversation();
+    }
+
+    private void closeConversation() {
         if (mConversation != null) {
             mConversation.close();
             mConversation = null;
+            //挂断时会释放本地流，如需继续显示本地流，则挂断后要重新获取一次本地流
+            createAndShowLocalStream();
         }
         btnInvite.setText("用户列表");
     }
@@ -286,6 +287,7 @@ public class ConversationActivity extends AppCompatActivity {
         public void onCallResponse(CallStatus callStatus) {
             switch (callStatus) {
                 case ACCEPTED:
+
                     isInConversation = true;
                     break;
                 case REJECTED:
@@ -339,8 +341,8 @@ public class ConversationActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    closeConversation();
                     Toast.makeText(ConversationActivity.this, "对方挂断", Toast.LENGTH_SHORT).show();
-                    btnInvite.setText("用户列表");
                 }
             });
 

@@ -29,12 +29,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.et_app_id)
-    EditText etAppId;
-    @BindView(R.id.tv_prompt)
-    TextView tvPrompt;
     private static final int REQUEST_CODE = 0; // 请求码
-    private String mAppId;
     private WilddogAuth auth;
     private boolean isInlogin =false;
     // 所需的全部权限
@@ -65,17 +60,6 @@ public class MainActivity extends AppCompatActivity {
     public void login() {
         if(isInlogin){return;}
         isInlogin = true;
-        mAppId = etAppId.getText().toString();
-        if (TextUtils.isEmpty(mAppId)) {
-            Toast.makeText(MainActivity.this, "请输入你的AppId", Toast.LENGTH_SHORT).show();
-            etAppId.setText("");
-            return;
-        }
-        //初始化WilddogApp,完成初始化之后可在项目任意位置通过getInstance()获取Sync & Auth对象
-        WilddogOptions.Builder builder = new WilddogOptions.Builder().setSyncUrl("https://" + mAppId + ".wilddogio" +
-                ".com");
-        WilddogOptions options = builder.build();
-        WilddogApp.initializeApp(getApplicationContext(), options);
         //获取Sync & Auth 对象
         auth = WilddogAuth.getInstance();
         //采用匿名登录方式认证
@@ -88,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     //身份认证成功
-                    tvPrompt.setVisibility(View.INVISIBLE);
                     String uid = auth.getCurrentUser().getUid();
                     //用户可以使用任意自定义节点来保存用户数据，但是不要使用 [wilddogVideo]节点存放私有数据
                     //以防和Video SDK 数据发生冲突
@@ -100,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                     userRef.child(uid).onDisconnect().removeValue();
                     if (!TextUtils.isEmpty(uid)) {
                         Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
-                        intent.putExtra("app_id", mAppId);
                         startActivity(intent);
                         isInlogin = false;
                         finish();
