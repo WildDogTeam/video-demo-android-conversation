@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="wilddog-auth-android-2.0.5">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-auth-android/2.0.5/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-auth-android/2.0.5/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/fda80235d610acf100fc6563fc86f8b904a17017/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/fda80235d610acf100fc6563fc86f8b904a17017/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
