@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea/libraries
+/.idea/copyright
+/.idea/markdown-navigator
+/.idea/markdown-navigator.xml
+/build
+/.gradle
+/.idea/vcs.xml

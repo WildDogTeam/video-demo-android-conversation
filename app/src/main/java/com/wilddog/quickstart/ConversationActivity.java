@@ -94,13 +94,15 @@ public class ConversationActivity extends AppCompatActivity {
     private LocalStream localStream;
     private Conversation mConversation;
     DecimalFormat decimalFormat = new DecimalFormat("0.00");
-
+    private AlertDialog alertDialog;
     private Map<Conversation, AlertDialog> conversationAlertDialogMap;
     //AlertDialog列表
     private WilddogVideo.Listener inviteListener = new WilddogVideo.Listener() {
         @Override
         public void onCalled(final Conversation conversation, String s) {
             mConversation = conversation;
+            mConversation.setConversationListener(conversationListener);
+            mConversation.setStatsListener(statsListener);
             AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);
             builder.setMessage("邀请你加入会话");
             builder.setTitle("加入邀请");
@@ -117,11 +119,11 @@ public class ConversationActivity extends AppCompatActivity {
                     conversationAlertDialogMap.remove(conversation);
                     mConversation.accept(localStream);
                     isInConversation = true;
-                    mConversation.setConversationListener(conversationListener);
+
                 }
             });
 
-            AlertDialog alertDialog = builder.create();
+            alertDialog = builder.create();
             alertDialog.setCanceledOnTouchOutside(false);
             alertDialog.show();
             conversationAlertDialogMap.put(conversation, alertDialog);
@@ -208,6 +210,7 @@ public class ConversationActivity extends AppCompatActivity {
     }
 
     private void createAndShowLocalStream() {
+
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
         LocalStreamOptions options = builder.dimension(LocalStreamOptions.Dimension.DIMENSION_480P).build();
         //创建本地视频流，通过video对象获取本地视频流
@@ -234,7 +237,6 @@ public class ConversationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_invite)
     public void invite() {
-
         //取消发起会话邀请
         showLoginUsers();
 
@@ -269,7 +271,7 @@ public class ConversationActivity extends AppCompatActivity {
             String participant = data.getStringExtra("participant");
             //调用inviteToConversation 方法发起会话
             inviteToConversation(participant);
-            btnInvite.setText("取消邀请");
+            btnInvite.setText("用户列表");
         }
     }
 
@@ -279,6 +281,7 @@ public class ConversationActivity extends AppCompatActivity {
         //创建连接参数对象
         mConversation = video.call(participant, localStream, "data");
         mConversation.setConversationListener(conversationListener);
+        mConversation.setStatsListener(statsListener);
 
     }
 
@@ -295,6 +298,7 @@ public class ConversationActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(ConversationActivity.this, "对方拒绝你的邀请", Toast.LENGTH_SHORT).show();
+                            isInConversation = false;
                             btnInvite.setText("用户列表");
                         }
                     });
@@ -304,6 +308,7 @@ public class ConversationActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(ConversationActivity.this, "对方正在通话中,稍后再呼叫", Toast.LENGTH_SHORT).show();
+                            isInConversation = false;
                             btnInvite.setText("用户列表");
                         }
                     });
@@ -313,6 +318,7 @@ public class ConversationActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(ConversationActivity.this, "呼叫对方超时,请稍后再呼叫", Toast.LENGTH_SHORT).show();
+                            isInConversation = false;
                             btnInvite.setText("用户列表");
                         }
                     });
@@ -325,7 +331,7 @@ public class ConversationActivity extends AppCompatActivity {
         @Override
         public void onStreamReceived(RemoteStream remoteStream) {
             remoteStream.attach(remoteView);
-            mConversation.setStatsListener(statsListener);
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -337,6 +343,9 @@ public class ConversationActivity extends AppCompatActivity {
         @Override
         public void onClosed() {
             Log.e(TAG, "onClosed");
+            if (alertDialog != null && alertDialog.isShowing()) {
+                alertDialog.dismiss();
+            }
             isInConversation = false;
             runOnUiThread(new Runnable() {
                 @Override
