@@ -16,7 +16,7 @@ demo-android-drawing 需要 Wilddog 来同步和存储数据。您可以在这�
 打开身份认证,将匿名登录打开。
 
 ### 安装和测试
-修改 com.wilddog.quickstart.Constants 类中的 VIDEO_APPID 值为在 Wilddog 官网申请的 Wliddog Video App。
+修改 com.wilddog.quickstart.Constants 类中的 VIDEO_APPID 值为在 Wilddog 官网申请的 Wliddog Video AppID。
 
 安装打开应用。
 
