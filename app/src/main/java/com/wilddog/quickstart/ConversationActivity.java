@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -88,6 +89,8 @@ public class ConversationActivity extends AppCompatActivity {
     TextView tvRemoteRate;
     @BindView(R.id.tv_remote_recbytes)
     TextView tvRemoteRecBytes;
+    @BindView(R.id.tv_data)
+    TextView tvData;
 
 
     private WilddogVideo video;
@@ -100,6 +103,10 @@ public class ConversationActivity extends AppCompatActivity {
     private WilddogVideo.Listener inviteListener = new WilddogVideo.Listener() {
         @Override
         public void onCalled(final Conversation conversation, String s) {
+            if(!TextUtils.isEmpty(s)){
+                Toast.makeText(ConversationActivity.this,"对方邀请时候携带的信息是:"+s,Toast.LENGTH_SHORT).show();
+                tvData.setText("对方携带数据为:"+s);
+            }
             mConversation = conversation;
             mConversation.setConversationListener(conversationListener);
             mConversation.setStatsListener(statsListener);
@@ -277,9 +284,9 @@ public class ConversationActivity extends AppCompatActivity {
 
 
     private void inviteToConversation(String participant) {
-
+        String data = "{\"type\":\"doctor\",\"usedTime\":19,\"uid\":3492,\"name\":\"彬子\",\"consult_id\":112,\"avatar\":\"\\/uploads\\/avatars\\/2017\\/08\\/02\\/1501643194728229.jpeg\"}";
         //创建连接参数对象
-        mConversation = video.call(participant, localStream, "data");
+        mConversation = video.call(participant, localStream, data);
         mConversation.setConversationListener(conversationListener);
         mConversation.setStatsListener(statsListener);
 
