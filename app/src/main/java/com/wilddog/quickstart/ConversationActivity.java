@@ -284,7 +284,7 @@ public class ConversationActivity extends AppCompatActivity {
 
 
     private void inviteToConversation(String participant) {
-        String data = "{\"type\":\"doctor\",\"usedTime\":19,\"uid\":3492,\"name\":\"彬子\",\"consult_id\":112,\"avatar\":\"\\/uploads\\/avatars\\/2017\\/08\\/02\\/1501643194728229.jpeg\"}";
+        String data = "extra data";
         //创建连接参数对象
         mConversation = video.call(participant, localStream, data);
         mConversation.setConversationListener(conversationListener);

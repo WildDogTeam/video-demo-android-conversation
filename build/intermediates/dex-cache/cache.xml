@@ -48,6 +48,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/home/fly/.android/build-cache/91b67f2f35112207ff36ffe03870867605cd725d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="edfc009825908ca91ed88c0fcf911b9b2db0b463">
+        <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/pre-dexed/debug/classes_f77e0046044349f4ca60586a27d35a1f7965efd8.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/fly/.android/build-cache/d92bf3f31258c9c518b61fc3b22a7d9e05f7eed0/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -63,42 +72,6 @@
         revision="25.0.0"
         sha1="5e48817ef166ae4e9d6e58e3e86ec24f5e27f63d">
         <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/pre-dexed/debug/wilddog-common-android-2.0.2_1f68ff854c103bdc9078c8c9400e2242eaf7e697.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/fly/.android/build-cache/ac49cd26dda89eded1b224fd70ebcdc0be7e3197/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d68d03bde0dfeaf7e57833e594638f2a99eb2d07">
-        <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/pre-dexed/debug/classes_64341281e797758a99abd7b03a108f6310f23a5a.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0ef61fe2cc4de4a57a79f635704d0bcfb53b5bbb/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/fly/.android/build-cache/ac49cd26dda89eded1b224fd70ebcdc0be7e3197/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d68d03bde0dfeaf7e57833e594638f2a99eb2d07">
-        <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_64341281e797758a99abd7b03a108f6310f23a5a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1964871460ac31ceb093dfdae88e6f6af55ee9a2">
-        <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0ef86bd377d88327aca67a03075d461bf470903a/classes.dex" />
     </item>
     <item
         is-multidex="false"
