@@ -13,8 +13,9 @@
     <list default="true" id="96900da5-ab44-4170-ac25-3a3d52b448b6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_conversation.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_conversation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/Constants.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MediaApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MediaApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="video-demo-android-conversation.iws" />
@@ -47,21 +48,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConversationActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java">
+      <file leaf-file-name="PeerConnectionFactoryHolder.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.android/build-cache/91b67f2f35112207ff36ffe03870867605cd725d/output/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionFactoryHolder.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1306">
-              <caret line="290" column="54" selection-start-line="290" selection-start-column="54" selection-end-line="290" selection-end-column="54" />
-              <folding>
-                <element signature="method#onTokenError#0;class#3291:4937" expanded="false" />
-                <element signature="class#4999:5391" expanded="false" />
-                <element signature="method#changeRemoteData#0;class#ConversationActivity#0" expanded="false" />
-                <element signature="method#convertToMB#0;class#ConversationActivity#0" expanded="false" />
-                <element signature="e#6889#6961#0" expanded="false" />
-                <element signature="e#8804#8817#0" expanded="false" />
-                <element signature="e#11842#12208#0" expanded="true" />
-                <element signature="e#12207#12208#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="324">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,24 +61,19 @@
       <file leaf-file-name="Constants.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+            <state relative-caret-position="144">
+              <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_conversation.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_conversation.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="MediaApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MediaApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="199" column="14" selection-start-line="199" selection-start-column="14" selection-end-line="199" selection-end-column="14" />
-              <folding>
-                <element signature="e#3078#7120#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="234">
+              <caret line="16" column="114" selection-start-line="16" selection-start-column="114" selection-end-line="16" selection-end-column="114" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,7 +81,7 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
+            <state relative-caret-position="1008">
               <caret line="56" column="59" selection-start-line="56" selection-start-column="59" selection-end-line="56" selection-end-column="59" />
               <folding />
             </state>
@@ -102,30 +89,57 @@
         </entry>
       </file>
       <file leaf-file-name="Conversation.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.3-SNAPSHOT/jars/classes.jar!/com/wilddog/video/Conversation.class">
+        <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.4-SNAPSHOT/jars/classes.jar!/com/wilddog/video/Conversation.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5382">
-              <caret line="345" column="0" selection-start-line="345" selection-start-column="0" selection-end-line="345" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="244" column="16" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1188">
+              <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="PeerConnectionClient.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.3-SNAPSHOT/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionClient.class">
+        <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.4-SNAPSHOT/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionClient.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6174">
-              <caret line="381" column="42" selection-start-line="381" selection-start-column="42" selection-end-line="381" selection-end-column="42" />
+            <state relative-caret-position="5706">
+              <caret line="355" column="9" selection-start-line="355" selection-start-column="9" selection-end-line="355" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MediaStream.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.3-SNAPSHOT/jars/libs/libjingle_peerconnection_java.jar!/org/webrtc/MediaStream.class">
+      <file leaf-file-name="ConversationActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="14" column="60" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="60" />
+            <state relative-caret-position="1111">
+              <caret line="335" column="0" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
+              <folding>
+                <element signature="method#onTokenError#0;class#3291:4937" expanded="false" />
+                <element signature="class#4999:5391" expanded="false" />
+                <element signature="method#changeRemoteData#0;class#ConversationActivity#0" expanded="false" />
+                <element signature="method#convertToMB#0;class#ConversationActivity#0" expanded="false" />
+                <element signature="e#6889#6961#0" expanded="false" />
+                <element signature="e#8804#8817#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -279,6 +293,11 @@
                 <option name="description" value="Displays all dependencies declared in root project 'video-demo-android-conversation'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.wilddog.client:wilddog-video-android:2.0.4" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComWilddogClientWilddogVideoAndroid204Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -839,11 +858,6 @@
                 <option name="name" value="clean" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.wilddog.client:wilddog-video-android:2.0.3" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComWilddogClientWilddogVideoAndroid203Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="preDebugBuild" />
               </ExternalTaskPojo>
@@ -988,6 +1002,11 @@
                 <option name="description" value="Displays all dependencies declared in project ':app'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.wilddog.client:wilddog-video-android:2.0.4" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComWilddogClientWilddogVideoAndroid204Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1544,11 +1563,6 @@
                 <option name="name" value="clean" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.wilddog.client:wilddog-video-android:2.0.3" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComWilddogClientWilddogVideoAndroid203Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="preDebugBuild" />
               </ExternalTaskPojo>
@@ -1603,7 +1617,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4505268264898" />
+        <entry key="$PROJECT_DIR$" value="4506365157235" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1957,9 +1971,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MediaApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/.gitignore" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.1-SNAPSHOT/jars/classes.jar!/com/wilddog/video/Conversation.class" />
@@ -1967,20 +1979,24 @@
         <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.1-SNAPSHOT/jars/classes.jar!/com/wilddog/video/core/peerconnection/LocalStreamProvider.class" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/Constants.java" />
         <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.3-SNAPSHOT/jars/classes.jar!/com/wilddog/video/Conversation.class" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_conversation.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/SecondActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MediaApplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/Constants.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2060" />
-    <option name="y" value="114" />
-    <option name="width" value="1835" />
-    <option name="height" value="1030" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1998,7 +2014,7 @@
       <showMembers />
       <showModules />
       <showLibraryContents />
-      <hideEmptyPackages />
+      <hideEmptyPackages ProjectPane="false" />
       <abbreviatePackageNames />
       <autoscrollToSource />
       <autoscrollFromSource />
@@ -2007,11 +2023,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane />
       </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2128,6 +2144,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wilddog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="quickstart" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2150,57 +2174,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="video-demo-android-conversation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="video-demo-android-conversation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="outputs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="video-demo-android-conversation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="video-demo-android-conversation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="outputs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2209,13 +2185,20 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="23ffd407" />
+    <property name="last_opened_file_path" value="$USER_HOME$/下载/WildDogDemo" />
+    <property name="device.picker.selection" value="9c779a00" />
     <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.packageName">
+      <recent name="com.wilddog.quickstart" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/jniLibs" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/jniLibs/mips64" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/jniLibs/mips" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/jniLibs/arm64-v8a" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/jniLibs/armeabi" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/jniLibs/x86_64" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -2550,30 +2533,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2060" y="114" width="1835" height="1030" extended-state="0" />
-    <editor active="false" />
+    <frame x="65" y="24" width="1855" height="1176" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848233" sideWeight="0.495831" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32666665" sideWeight="0.48922056" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28097346" sideWeight="0.56512016" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.502079" sideWeight="0.82601446" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32857144" sideWeight="0.5085683" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44285715" sideWeight="0.80541736" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46349558" sideWeight="0.44997206" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.714467" sideWeight="0.43923122" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952183" sideWeight="0.49805447" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28097346" sideWeight="0.4348798" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27142859" sideWeight="0.58485353" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848233" sideWeight="0.4913841" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38163716" sideWeight="0.47792062" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295238" sideWeight="0.49585405" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32666665" sideWeight="0.48258707" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3809524" sideWeight="0.46047541" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2532141" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2570481" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Color Manager" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android WiFi ADB" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32857144" sideWeight="0.49143174" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2584,7 +2567,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.4936429" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -2609,7 +2592,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java</url>
-          <line>324</line>
+          <line>323</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
@@ -2621,15 +2604,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java</url>
-          <line>323</line>
+          <line>322</line>
           <properties />
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java</url>
-          <line>336</line>
-          <properties />
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.3-SNAPSHOT/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionClient.class</url>
@@ -2643,14 +2620,8 @@
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.3-SNAPSHOT/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionClient.class</url>
-          <line>384</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="25" />
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
@@ -2659,89 +2630,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.android/build-cache/cd73ee0cc584e24d1fd2935ff87e0206e0cae4d3/output/jars/classes.jar!/com/wilddog/video/Conversation.class" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MediaApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="18" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.0/jars/classes.jar!/com/wilddog/video/WilddogVideoViewLayout.class" />
-    <entry file="file:///opt/sdk/SDK/sources/android-25/org/json/JSONObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/util/concurrent/atomic/AtomicInteger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/util/concurrent/locks/AbstractQueuedSynchronizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="1914" column="0" selection-start-line="1914" selection-start-column="0" selection-end-line="1914" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/util/concurrent/locks/AbstractOwnableSynchronizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/util/concurrent/locks/ReentrantLock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/util/concurrent/LinkedBlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="394" column="0" selection-start-line="394" selection-start-column="0" selection-end-line="394" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/util/concurrent/ThreadPoolExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="1330" column="0" selection-start-line="1330" selection-start-column="0" selection-end-line="1330" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/sdk/SDK/sources/android-25/java/util/concurrent/Executors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="582" column="0" selection-start-line="582" selection-start-column="0" selection-end-line="582" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.1-SNAPSHOT/jars/libs/libjingle_peerconnection_java.jar!/org/webrtc/VideoCapturer.class" />
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.1-SNAPSHOT/jars/libs/libjingle_peerconnection_java.jar!/org/webrtc/PeerConnection.class" />
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.1-SNAPSHOT/jars/classes.jar!/com/wilddog/video/core/rtc/RTCClient.class" />
     <entry file="file:///opt/sdk/SDK/sources/android-25/android/widget/TextView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -2796,17 +2684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/libraries/butterknife_8_4_0.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2814,14 +2691,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="324">
+            <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
@@ -2835,14 +2713,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="324">
-            <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -2889,13 +2759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -2939,7 +2802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="14" column="60" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2951,22 +2813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="56" column="59" selection-start-line="56" selection-start-column="59" selection-end-line="56" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_conversation.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -2974,16 +2820,118 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
           <caret line="199" column="14" selection-start-line="199" selection-start-column="14" selection-end-line="199" selection-end-column="14" />
-          <folding>
-            <element signature="e#3078#7120#0" expanded="false" />
-          </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.android/build-cache/91b67f2f35112207ff36ffe03870867605cd725d/output/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4554">
+          <caret line="291" column="0" selection-start-line="291" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/SecondActivity.java" />
+    <entry file="jar://$USER_HOME$/.android/build-cache/91b67f2f35112207ff36ffe03870867605cd725d/output/jars/classes.jar!/org/webrtc/PeerConnectionFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jniLibs/armeabi-v7a/libyuv.so" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jniLibs/x86/libjingle_peerconnection_so.so" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jniLibs/x86_64/libjingle_peerconnection_so.so" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jniLibs/armeabi/libjingle_peerconnection_so.so" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jniLibs/arm64-v8a/libjingle_peerconnection_so.so" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jniLibs/mips/libjingle_peerconnection_so.so" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jniLibs/mips64/libjingle_peerconnection_so.so" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.5-SNAPSHOT/jars/classes.jar!/org/webrtc/PeerConnectionFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="45" column="54" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.4-SNAPSHOT/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5706">
+          <caret line="355" column="9" selection-start-line="355" selection-start-column="9" selection-end-line="355" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.android/build-cache/91b67f2f35112207ff36ffe03870867605cd725d/output/jars/classes.jar!/com/wilddog/video/core/peerconnection/PeerConnectionFactoryHolder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.wilddog.client/wilddog-video-android/2.0.4-SNAPSHOT/jars/classes.jar!/com/wilddog/video/Conversation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="244" column="16" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="56" column="59" selection-start-line="56" selection-start-column="59" selection-end-line="56" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/ConversationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1306">
-          <caret line="290" column="54" selection-start-line="290" selection-start-column="54" selection-end-line="290" selection-end-column="54" />
+        <state relative-caret-position="1111">
+          <caret line="335" column="0" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
           <folding>
             <element signature="method#onTokenError#0;class#3291:4937" expanded="false" />
             <element signature="class#4999:5391" expanded="false" />
@@ -2991,16 +2939,22 @@
             <element signature="method#convertToMB#0;class#ConversationActivity#0" expanded="false" />
             <element signature="e#6889#6961#0" expanded="false" />
             <element signature="e#8804#8817#0" expanded="false" />
-            <element signature="e#11842#12208#0" expanded="true" />
-            <element signature="e#12207#12208#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/MediaApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="16" column="114" selection-start-line="16" selection-start-column="114" selection-end-line="16" selection-end-column="114" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wilddog/quickstart/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+        <state relative-caret-position="144">
+          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
           <folding />
         </state>
       </provider>

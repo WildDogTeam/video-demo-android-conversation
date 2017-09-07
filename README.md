@@ -17,12 +17,13 @@ demo-android-drawing 需要 Wilddog 来同步和存储数据。您可以在这�
 
 ### 安装和测试
 修改 com.wilddog.quickstart.Constants 类中的 VIDEO_APPID 值为在 Wilddog 官网申请的 Wliddog Video AppID。
+SYNC_APPID 值为在 Wilddog 官网申请的 Wliddog Sync AppID。
 
 安装打开应用。
 
 
 ### 版本声明
-本应用使用的是WilddogVideo 2.0 SDK。
+本应用使用的是WilddogVideo 2.0+ SDK。
 
 ### 联系方式
 如果发现有bug,请及时和我们取得联系。
