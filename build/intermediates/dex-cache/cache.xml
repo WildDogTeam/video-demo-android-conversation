@@ -48,6 +48,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/home/fly/.android/build-cache/7ad071912317dd163a6ed9309181368498633a5e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0517461a272afc3682b503488384b1c0f102d0b6">
+        <dex dex="/opt/wilddogsdk/video-demo-android-conversation/app/build/intermediates/pre-dexed/debug/classes_4d6327e86fc20ec68a52de83a3242ea844030aab.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/fly/.android/build-cache/d92bf3f31258c9c518b61fc3b22a7d9e05f7eed0/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -72,15 +81,6 @@
         revision="25.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0ef61fe2cc4de4a57a79f635704d0bcfb53b5bbb/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/fly/.android/build-cache/ad8c582bdf62550f2d27980f58180a6c491c338e/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e8b6e020a2e06c3b3859f63dbf0044e632fe807a">
-        <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_74f4ff290c254d75f60eb2a74b06804dee09e2ca/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,12 +138,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/fly/.android/build-cache/ad8c582bdf62550f2d27980f58180a6c491c338e/output/jars/classes.jar"
+        jar="/home/fly/.android/build-cache/33df63eaeeeb527a9bf1b5c13fefc36888e29b57/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="e8b6e020a2e06c3b3859f63dbf0044e632fe807a">
-        <dex dex="/wilddogDemos/video-demo-android-conversation/app/build/intermediates/pre-dexed/debug/classes_74f4ff290c254d75f60eb2a74b06804dee09e2ca.jar" />
+        sha1="f2a1046805c3f6238785a316ccf6b6e46559175b">
+        <dex dex="/opt/wilddogsdk/video-demo-android-conversation/app/build/intermediates/pre-dexed/debug/classes_596779cec9515cac57b2382bd0d033ddbc75db6e.jar" />
     </item>
 
 </items>

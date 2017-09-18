@@ -12,25 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="320dp">
 
-        <com.wilddog.video.WilddogVideoViewLayout
+        <com.wilddog.video.base.WilddogVideoViewLayout
             android:id="@+id/remote_video_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.wilddog.video.WilddogVideoView
+            <com.wilddog.video.base.WilddogVideoView
                 android:id="@+id/remote_video_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </com.wilddog.video.WilddogVideoViewLayout>
+        </com.wilddog.video.base.WilddogVideoViewLayout>
 
-        <com.wilddog.video.WilddogVideoViewLayout
+        <com.wilddog.video.base.WilddogVideoViewLayout
             android:id="@+id/local_video_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.wilddog.video.WilddogVideoView
+            <com.wilddog.video.base.WilddogVideoView
                 android:id="@+id/local_video_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </com.wilddog.video.WilddogVideoViewLayout>
+        </com.wilddog.video.base.WilddogVideoViewLayout>
 
     </RelativeLayout>
 
@@ -73,8 +73,6 @@
                 android:id="@+id/btn_invite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
                 android:text="用户列表"
                 />
 
@@ -85,6 +83,13 @@
                 android:layout_marginLeft="20dp"
                 android:text="挂断"
                 android:visibility="visible"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_mic"
+                android:layout_marginLeft="20dp"
+                android:text="mic"
                 />
         </LinearLayout>
         <LinearLayout

@@ -14,17 +14,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wilddog.client.SyncReference;
-import com.wilddog.client.WilddogSync;
+
 import com.wilddog.video.CallStatus;
 import com.wilddog.video.Conversation;
-import com.wilddog.video.LocalStream;
-import com.wilddog.video.LocalStreamOptions;
+
 import com.wilddog.video.RemoteStream;
 import com.wilddog.video.WilddogVideo;
-import com.wilddog.video.WilddogVideoError;
-import com.wilddog.video.WilddogVideoView;
-import com.wilddog.video.WilddogVideoViewLayout;
+
+import com.wilddog.video.base.LocalStream;
+import com.wilddog.video.base.LocalStreamOptions;
+import com.wilddog.video.base.WilddogVideoError;
+import com.wilddog.video.base.WilddogVideoInitializer;
+import com.wilddog.video.base.WilddogVideoView;
+import com.wilddog.video.base.WilddogVideoViewLayout;
 import com.wilddog.video.core.stats.LocalStreamStatsReport;
 import com.wilddog.video.core.stats.RemoteStreamStatsReport;
 import com.wilddog.wilddogauth.WilddogAuth;
@@ -54,7 +56,7 @@ public class ConversationActivity extends AppCompatActivity {
     private static final String TAG = ConversationActivity.class.getSimpleName();
 
     private boolean isInConversation = false;
-
+    private boolean isAudioEnable = true;
     @BindView(R.id.btn_invite)
     Button btnInvite;
 
@@ -204,7 +206,7 @@ public class ConversationActivity extends AppCompatActivity {
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
         tvUid.setText(uid);
         //初始化Video
-        WilddogVideo.initialize(getApplicationContext(), Constants.VIDEO_APPID, WilddogAuth.getInstance().getCurrentUser().getToken(false).getResult()
+        WilddogVideoInitializer.initialize(getApplicationContext(), Constants.VIDEO_APPID, WilddogAuth.getInstance().getCurrentUser().getToken(false).getResult()
                 .getToken());
         //获取video对象
         video = WilddogVideo.getInstance();
@@ -221,7 +223,7 @@ public class ConversationActivity extends AppCompatActivity {
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
         LocalStreamOptions options = builder.dimension(LocalStreamOptions.Dimension.DIMENSION_480P).build();
         //创建本地视频流，通过video对象获取本地视频流
-        localStream = video.createLocalStream(options);
+        localStream = LocalStream.create(options);
         //开启音频/视频，设置为 false 则关闭声音或者视频画面
         //localStream.enableAudio(true);
         // localStream.enableVideo(true);
@@ -249,6 +251,14 @@ public class ConversationActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.btn_mic)
+    public void mic(){
+        if(localStream!=null){
+            isAudioEnable = !isAudioEnable;
+            localStream.enableAudio(isAudioEnable);
+        }
+    }
+
     @OnClick(R.id.btn_invite_cancel)
     public void inviteCancel() {
 
@@ -260,7 +270,6 @@ public class ConversationActivity extends AppCompatActivity {
             mConversation.close();
             mConversation = null;
             //挂断时会释放本地流，如需继续显示本地流，则挂断后要重新获取一次本地流
-            createAndShowLocalStream();
         }
         btnInvite.setText("用户列表");
     }
