@@ -63,3 +63,4 @@ workspace.xml
 
 /src/main/jniLibs
 
+*.iml
