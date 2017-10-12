@@ -15,11 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.wilddog.video.CallStatus;
-import com.wilddog.video.Conversation;
+import com.wilddog.client.WilddogSync;
 
-import com.wilddog.video.RemoteStream;
-import com.wilddog.video.WilddogVideo;
 
 import com.wilddog.video.base.LocalStream;
 import com.wilddog.video.base.LocalStreamOptions;
@@ -27,8 +24,15 @@ import com.wilddog.video.base.WilddogVideoError;
 import com.wilddog.video.base.WilddogVideoInitializer;
 import com.wilddog.video.base.WilddogVideoView;
 import com.wilddog.video.base.WilddogVideoViewLayout;
-import com.wilddog.video.core.stats.LocalStreamStatsReport;
-import com.wilddog.video.core.stats.RemoteStreamStatsReport;
+import com.wilddog.video.base.util.LogUtil;
+import com.wilddog.video.base.util.logging.Logger;
+
+import com.wilddog.video.call.CallStatus;
+import com.wilddog.video.call.Conversation;
+import com.wilddog.video.call.RemoteStream;
+import com.wilddog.video.call.WilddogVideoCall;
+import com.wilddog.video.call.stats.LocalStreamStatsReport;
+import com.wilddog.video.call.stats.RemoteStreamStatsReport;
 import com.wilddog.wilddogauth.WilddogAuth;
 
 import java.text.DecimalFormat;
@@ -59,6 +63,8 @@ public class ConversationActivity extends AppCompatActivity {
     private boolean isAudioEnable = true;
     @BindView(R.id.btn_invite)
     Button btnInvite;
+    @BindView(R.id.btn_mic)
+    Button btnMic;
 
     @BindView(R.id.tv_uid)
     TextView tvUid;
@@ -95,14 +101,14 @@ public class ConversationActivity extends AppCompatActivity {
     TextView tvData;
 
 
-    private WilddogVideo video;
+    private WilddogVideoCall video;
     private LocalStream localStream;
     private Conversation mConversation;
     DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private AlertDialog alertDialog;
     private Map<Conversation, AlertDialog> conversationAlertDialogMap;
     //AlertDialog列表
-    private WilddogVideo.Listener inviteListener = new WilddogVideo.Listener() {
+    private WilddogVideoCall.Listener inviteListener = new WilddogVideoCall.Listener() {
         @Override
         public void onCalled(final Conversation conversation, String s) {
             if(!TextUtils.isEmpty(s)){
@@ -205,11 +211,12 @@ public class ConversationActivity extends AppCompatActivity {
 
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
         tvUid.setText(uid);
+        LogUtil.setLogLevel(Logger.Level.DEBUG);
         //初始化Video
         WilddogVideoInitializer.initialize(getApplicationContext(), Constants.VIDEO_APPID, WilddogAuth.getInstance().getCurrentUser().getToken(false).getResult()
                 .getToken());
         //获取video对象
-        video = WilddogVideo.getInstance();
+        video = WilddogVideoCall.getInstance();
 
         initVideoRender();
         createAndShowLocalStream();
@@ -225,8 +232,8 @@ public class ConversationActivity extends AppCompatActivity {
         //创建本地视频流，通过video对象获取本地视频流
         localStream = LocalStream.create(options);
         //开启音频/视频，设置为 false 则关闭声音或者视频画面
-        //localStream.enableAudio(true);
-        // localStream.enableVideo(true);
+        localStream.enableAudio(true);
+         localStream.enableVideo(true);
         //为视频流绑定播放控件
         localStream.attach(localView);
     }
@@ -347,7 +354,7 @@ public class ConversationActivity extends AppCompatActivity {
         @Override
         public void onStreamReceived(RemoteStream remoteStream) {
             remoteStream.attach(remoteView);
-
+            remoteStream.enableAudio(true);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -405,6 +412,7 @@ public class ConversationActivity extends AppCompatActivity {
                 localStream.close();
             }
         }
-
+        video.stop();
+        WilddogSync.getInstance().goOffline();
     }
 }
