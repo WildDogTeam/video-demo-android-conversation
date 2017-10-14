@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put(uid, true);
                     SyncReference userRef=WilddogSync.getInstance().getReference("users");
+                    userRef.goOnline();
                     userRef.updateChildren(map);
                     userRef.child(uid).onDisconnect().removeValue();
                     if (!TextUtils.isEmpty(uid)) {

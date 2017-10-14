@@ -217,6 +217,7 @@ public class ConversationActivity extends AppCompatActivity {
                 .getToken());
         //获取video对象
         video = WilddogVideoCall.getInstance();
+        video.start();
 
         initVideoRender();
         createAndShowLocalStream();
