@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put(uid, true);
                     SyncReference userRef=WilddogSync.getInstance().getReference("users");
+                    userRef.goOnline();
                     userRef.updateChildren(map);
                     userRef.child(uid).onDisconnect().removeValue();
                     if (!TextUtils.isEmpty(uid)) {
@@ -97,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
         if (requestCode == REQUEST_CODE && resultCode == PermissionHelper.PERMISSIONS_DENIED) {

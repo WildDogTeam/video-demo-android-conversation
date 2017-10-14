@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -146,7 +147,7 @@ public class ConversationActivity extends AppCompatActivity {
 
         @Override
         public void onTokenError(WilddogVideoError wilddogVideoError) {
-
+            Log.e(TAG, "onTokenError: "+wilddogVideoError.toString() );
         }
 
     };
@@ -217,6 +218,7 @@ public class ConversationActivity extends AppCompatActivity {
                 .getToken());
         //获取video对象
         video = WilddogVideoCall.getInstance();
+        video.start();
 
         initVideoRender();
         createAndShowLocalStream();
