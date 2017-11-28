@@ -11,15 +11,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.wilddog.client.SyncReference;
 import com.wilddog.client.WilddogSync;
-
-
 import com.wilddog.video.base.LocalStream;
 import com.wilddog.video.base.LocalStreamOptions;
 import com.wilddog.video.base.WilddogVideoError;
@@ -28,7 +24,6 @@ import com.wilddog.video.base.WilddogVideoView;
 import com.wilddog.video.base.WilddogVideoViewLayout;
 import com.wilddog.video.base.util.LogUtil;
 import com.wilddog.video.base.util.logging.Logger;
-
 import com.wilddog.video.call.CallStatus;
 import com.wilddog.video.call.Conversation;
 import com.wilddog.video.call.RemoteStream;
