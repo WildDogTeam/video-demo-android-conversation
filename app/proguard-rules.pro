@@ -28,7 +28,6 @@
 
 -keep class com.wilddog.video.**{*;}
 -keep class com.wilddog.client.**{*;}
--keep class com.wilddog.wilddogcore.**{*;}
 
 -keep class org.webrtc.**{*;}
 -keep class org.java_websocket.**{*;}

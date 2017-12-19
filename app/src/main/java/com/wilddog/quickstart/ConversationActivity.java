@@ -1,8 +1,11 @@
 package com.wilddog.quickstart;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -14,7 +17,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wilddog.client.SyncReference;
 import com.wilddog.client.WilddogSync;
 import com.wilddog.video.base.LocalStream;
 import com.wilddog.video.base.LocalStreamOptions;
@@ -28,12 +30,10 @@ import com.wilddog.video.call.CallStatus;
 import com.wilddog.video.call.Conversation;
 import com.wilddog.video.call.RemoteStream;
 import com.wilddog.video.call.WilddogVideoCall;
+import com.wilddog.video.call.WilddogVideoCallOptions;
 import com.wilddog.video.call.stats.LocalStreamStatsReport;
 import com.wilddog.video.call.stats.RemoteStreamStatsReport;
 import com.wilddog.wilddogauth.WilddogAuth;
-import com.wilddog.wilddogauth.core.Task;
-import com.wilddog.wilddogauth.core.listener.OnCompleteListener;
-import com.wilddog.wilddogauth.core.result.AuthResult;
 
 import java.math.BigInteger;
 import java.text.DecimalFormat;
@@ -47,6 +47,7 @@ import butterknife.OnClick;
 
 public class ConversationActivity extends AppCompatActivity {
 
+    private static final String TAG = ConversationActivity.class.getSimpleName();
     // Local preview screen position after call is connected.
     private static final int LOCAL_X_CONNECTED = 0;
     private static final int LOCAL_Y_CONNECTED = 0;
@@ -56,9 +57,11 @@ public class ConversationActivity extends AppCompatActivity {
     private static final int REMOTE_X = 50;
     private static final int REMOTE_Y = 0;
     private static final int REMOTE_WIDTH = 50;
+
     private static final int REMOTE_HEIGHT = 100;
 
-    private static final String TAG = ConversationActivity.class.getSimpleName();
+    private boolean isInConversation = false;
+    private boolean isAudioEnable = false;
     @BindView(R.id.btn_invite)
     Button btnInvite;
     @BindView(R.id.btn_mic)
@@ -91,25 +94,21 @@ public class ConversationActivity extends AppCompatActivity {
     TextView tvRemoteRecBytes;
     @BindView(R.id.tv_data)
     TextView tvData;
+
+    PermissionHelper mHelper;
+
+    // 所需的全部权限
+    static final String[] PERMISSIONS = new String[]{
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.CAMERA
+    };
+
     DecimalFormat decimalFormat = new DecimalFormat("0.00");
-    private boolean isInConversation = false;
-    private boolean isAudioEnable = true;
     private WilddogVideoCall video;
     private LocalStream localStream;
     private Conversation mConversation;
     private AlertDialog alertDialog;
     private Map<Conversation, AlertDialog> conversationAlertDialogMap;
-    private Conversation.StatsListener statsListener = new Conversation.StatsListener() {
-        @Override
-        public void onLocalStreamStatsReport(LocalStreamStatsReport localStreamStatsReport) {
-            changeLocalData(localStreamStatsReport);
-        }
-
-        @Override
-        public void onRemoteStreamStatsReport(RemoteStreamStatsReport remoteStreamStatsReport) {
-            changeRemoteData(remoteStreamStatsReport);
-        }
-    };
     private Conversation.Listener conversationListener = new Conversation.Listener() {
         @Override
         public void onCallResponse(CallStatus callStatus) {
@@ -246,7 +245,6 @@ public class ConversationActivity extends AppCompatActivity {
             builder.setPositiveButton("确认加入", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
                     conversationAlertDialogMap.remove(conversation);
                     mConversation.accept(localStream);
                     isInConversation = true;
@@ -262,36 +260,23 @@ public class ConversationActivity extends AppCompatActivity {
 
         @Override
         public void onTokenError(WilddogVideoError wilddogVideoError) {
-            // 处理token过期
-            if (wilddogVideoError.getErrCode() == 41001) {
-                WilddogAuth.getInstance().signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(Task<AuthResult> var1) {
-                        if (var1.isSuccessful()) {
-                            String token = var1.getResult().getWilddogUser().getToken(false).getResult().getToken();
-                            WilddogVideoInitializer.getInstance().setToken(token);
-                            final String uid = var1.getResult().getWilddogUser().getUid();
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    tvUid.setText(uid);
-                                }
-                            });
-                            Map<String, Object> map = new HashMap<String, Object>();
-                            map.put(uid, true);
-                            SyncReference userRef = WilddogSync.getInstance().getReference("users");
-                            userRef.goOnline();
-                            userRef.updateChildren(map);
-                            userRef.child(uid).onDisconnect().removeValue();
-                        }
-                    }
-                });
-            } else {
-                // token 无效
-                Toast.makeText(ConversationActivity.this, "token无效", Toast.LENGTH_SHORT).show();
-            }
+            Log.e(TAG, "onTokenError: " + wilddogVideoError.toString());
+        }
+
+    };
+
+    private Conversation.StatsListener statsListener = new Conversation.StatsListener() {
+        @Override
+        public void onLocalStreamStatsReport(LocalStreamStatsReport localStreamStatsReport) {
+            changeLocalData(localStreamStatsReport);
+        }
+
+        @Override
+        public void onRemoteStreamStatsReport(RemoteStreamStatsReport remoteStreamStatsReport) {
+            changeRemoteData(remoteStreamStatsReport);
         }
     };
+    private String participant;
 
     public void changeLocalData(final LocalStreamStatsReport localStats) {
         runOnUiThread(new Runnable() {
@@ -299,8 +284,8 @@ public class ConversationActivity extends AppCompatActivity {
             public void run() {
                 tvLocalDimensions.setText("dimension:" + localStats.getWidth() + "x" + localStats.getHeight());
                 tvLocalFps.setText("fps:" + localStats.getFps());
-                tvLocalRate.setText("rate:" + localStats.getBitsSentRate() + "Kb/s");
-                tvLocalSendBytes.setText("sent:" + convertToMB(localStats.getBytesSent()) + "MB");
+                tvLocalRate.setText("rate:" + localStats.getBitsSentRate() + "Kb/s " + localStats.getLocalCandidateType());
+//                tvLocalSendBytes.setText("sent:" + convertToMB(localStats.getBytesSent()) + "MB");
             }
         });
 
@@ -312,8 +297,8 @@ public class ConversationActivity extends AppCompatActivity {
             public void run() {
                 tvRemoteDimensions.setText("dimension:" + remoteStats.getWidth() + "x" + remoteStats.getHeight());
                 tvRemoteFps.setText("fps:" + remoteStats.getFps());
-                tvRemoteRecBytes.setText("received:" + convertToMB(remoteStats.getBytesReceived()) + "MB");
-                tvRemoteRate.setText("rate:" + remoteStats.getBitsReceivedRate() + "Kb/s" + " delay" + remoteStats.getDelay() + "ms");
+//                tvRemoteRecBytes.setText("received:" + convertToMB(remoteStats.getBytesReceived()) + "MB");
+                tvRemoteRate.setText("rate:" + remoteStats.getBitsReceivedRate() + "Kb/s  " + remoteStats.getRemoteCandidateType() + " delay" + remoteStats.getDelay() + "ms");
             }
         });
 
@@ -338,6 +323,8 @@ public class ConversationActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        mHelper = new PermissionHelper(this);
+
 
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
         tvUid.setText(uid);
@@ -350,7 +337,11 @@ public class ConversationActivity extends AppCompatActivity {
         video.start();
 
         initVideoRender();
-        createAndShowLocalStream();
+        if (mHelper.lacksPermissions(PERMISSIONS)) {
+            mHelper.requestPermissions(PERMISSIONS);
+        } else {
+            createAndShowLocalStream();
+        }
         conversationAlertDialogMap = new HashMap<>();
         video.setListener(inviteListener);
     }
@@ -358,7 +349,7 @@ public class ConversationActivity extends AppCompatActivity {
     private void createAndShowLocalStream() {
 
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
-        LocalStreamOptions options = builder.dimension(LocalStreamOptions.Dimension.DIMENSION_480P).build();
+        LocalStreamOptions options = builder.dimension(LocalStreamOptions.Dimension.DIMENSION_240P).build();
         //创建本地视频流，通过video对象获取本地视频流
         localStream = LocalStream.create(options);
         //开启音频/视频，设置为 false 则关闭声音或者视频画面
@@ -366,6 +357,7 @@ public class ConversationActivity extends AppCompatActivity {
         localStream.enableVideo(true);
         //为视频流绑定播放控件
         localStream.attach(localView);
+
     }
 
     //初始化视频展示控件
@@ -414,17 +406,38 @@ public class ConversationActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             //选取用户列表中的用户，获得其 Wilddog UID
-            String participant = data.getStringExtra("participant");
-            //调用inviteToConversation 方法发起会话
+            participant = data.getStringExtra("participant");
             inviteToConversation(participant);
-            btnInvite.setText("用户列表");
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PermissionHelper.PERMISSION_REQUEST_CODE && hasAllPermissionsGranted(grantResults)) {
+            Log.e(TAG, "onRequestPermissionsResult: ");
+            createAndShowLocalStream();
+        }
+    }
+
+    // 含有全部的权限
+    private boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {
+        for (int grantResult : grantResults) {
+            if (grantResult == PackageManager.PERMISSION_DENIED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void inviteToConversation(String participant) {
+        btnInvite.setText("用户列表");
         String data = "extra data";
         //创建连接参数对象
-        mConversation = video.call(participant, localStream, data);
+        WilddogVideoCallOptions option = new WilddogVideoCallOptions.Builder()
+                .data(data)
+                .build();
+        mConversation = video.call(participant, localStream, option);
         mConversation.setConversationListener(conversationListener);
         mConversation.setStatsListener(statsListener);
 

@@ -198,11 +198,11 @@
 
         </LinearLayout>
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:id="@+id/tv_data"
-            />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:id="@+id/tv_data"
+        />
 
     </LinearLayout>
 
