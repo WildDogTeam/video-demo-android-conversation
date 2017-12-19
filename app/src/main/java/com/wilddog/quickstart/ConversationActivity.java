@@ -24,7 +24,6 @@ import com.wilddog.video.base.WilddogVideoError;
 import com.wilddog.video.base.WilddogVideoInitializer;
 import com.wilddog.video.base.WilddogVideoView;
 import com.wilddog.video.base.WilddogVideoViewLayout;
-import com.wilddog.video.base.core.VideoContext;
 import com.wilddog.video.base.util.LogUtil;
 import com.wilddog.video.base.util.logging.Logger;
 import com.wilddog.video.call.CallStatus;
@@ -36,10 +35,6 @@ import com.wilddog.video.call.stats.LocalStreamStatsReport;
 import com.wilddog.video.call.stats.RemoteStreamStatsReport;
 import com.wilddog.wilddogauth.WilddogAuth;
 
-import org.webrtc.CameraVideoCapturer;
-
-import java.math.BigInteger;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,9 +64,6 @@ public class ConversationActivity extends AppCompatActivity {
     Button btnInvite;
     @BindView(R.id.btn_mic)
     Button btnMic;
-
-    @BindView(R.id.btn_restart)
-    Button restart;
 
     @BindView(R.id.tv_uid)
     TextView tvUid;
@@ -275,9 +267,6 @@ public class ConversationActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.btn_restart)
-    public void restart(){
-    }
     @OnClick(R.id.btn_mic)
     public void mic(){
         if(localStream!=null){
