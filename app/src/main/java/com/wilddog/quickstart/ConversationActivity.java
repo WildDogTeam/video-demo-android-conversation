@@ -47,6 +47,7 @@ import butterknife.OnClick;
 
 public class ConversationActivity extends AppCompatActivity {
 
+    private static final String TAG = ConversationActivity.class.getSimpleName();
     // Local preview screen position after call is connected.
     private static final int LOCAL_X_CONNECTED = 0;
     private static final int LOCAL_Y_CONNECTED = 0;
@@ -56,9 +57,8 @@ public class ConversationActivity extends AppCompatActivity {
     private static final int REMOTE_X = 50;
     private static final int REMOTE_Y = 0;
     private static final int REMOTE_WIDTH = 50;
-    private static final int REMOTE_HEIGHT = 100;
 
-    private static final String TAG = ConversationActivity.class.getSimpleName();
+    private static final int REMOTE_HEIGHT = 100;
 
     private boolean isInConversation = false;
     private boolean isAudioEnable = false;
