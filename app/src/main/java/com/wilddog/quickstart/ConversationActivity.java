@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wilddog.client.SyncReference;
 import com.wilddog.client.WilddogSync;
 import com.wilddog.video.base.LocalStream;
 import com.wilddog.video.base.LocalStreamOptions;
@@ -34,7 +35,12 @@ import com.wilddog.video.call.WilddogVideoCallOptions;
 import com.wilddog.video.call.stats.LocalStreamStatsReport;
 import com.wilddog.video.call.stats.RemoteStreamStatsReport;
 import com.wilddog.wilddogauth.WilddogAuth;
+import com.wilddog.wilddogauth.core.Task;
+import com.wilddog.wilddogauth.core.listener.OnCompleteListener;
+import com.wilddog.wilddogauth.core.result.AuthResult;
 
+import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,22 +70,16 @@ public class ConversationActivity extends AppCompatActivity {
     Button btnInvite;
     @BindView(R.id.btn_mic)
     Button btnMic;
-
     @BindView(R.id.tv_uid)
     TextView tvUid;
-
     @BindView(R.id.local_video_layout)
     WilddogVideoViewLayout localViewLayout;
-
     @BindView(R.id.remote_video_layout)
     WilddogVideoViewLayout remoteViewLayout;
-
     @BindView(R.id.local_video_view)
     WilddogVideoView localView;
-
     @BindView(R.id.remote_video_view)
     WilddogVideoView remoteView;
-
     @BindView(R.id.tv_local_dimensions)
     TextView tvLocalDimensions;
     @BindView(R.id.tv_local_fps)
@@ -107,18 +107,132 @@ public class ConversationActivity extends AppCompatActivity {
             Manifest.permission.CAMERA
     };
 
+    DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private WilddogVideoCall video;
     private LocalStream localStream;
     private Conversation mConversation;
     private AlertDialog alertDialog;
     private Map<Conversation, AlertDialog> conversationAlertDialogMap;
+    private Conversation.Listener conversationListener = new Conversation.Listener() {
+        @Override
+        public void onCallResponse(CallStatus callStatus) {
+            switch (callStatus) {
+                case ACCEPTED:
+
+                    isInConversation = true;
+                    break;
+                case REJECTED:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ConversationActivity.this, "对方拒绝你的邀请", Toast.LENGTH_SHORT).show();
+                            isInConversation = false;
+                            btnInvite.setText("用户列表");
+                        }
+                    });
+                    break;
+                case BUSY:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ConversationActivity.this, "对方正在通话中,稍后再呼叫", Toast.LENGTH_SHORT).show();
+                            isInConversation = false;
+                            btnInvite.setText("用户列表");
+                        }
+                    });
+                    break;
+                case TIMEOUT:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ConversationActivity.this, "呼叫对方超时,请稍后再呼叫", Toast.LENGTH_SHORT).show();
+                            isInConversation = false;
+                            btnInvite.setText("用户列表");
+                        }
+                    });
+                    dismissDialog();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        @Override
+        public void onStreamReceived(RemoteStream remoteStream) {
+            remoteStream.attach(remoteView);
+            remoteStream.enableAudio(true);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    btnInvite.setText("用户已加入");
+                }
+            });
+        }
+
+        @Override
+        public void onClosed() {
+            Log.e(TAG, "onClosed");
+            dismissDialog();
+            isInConversation = false;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    closeConversation();
+                    Toast.makeText(ConversationActivity.this, "对方挂断", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
+        @Override
+        public void onError(final WilddogVideoError wilddogVideoError) {
+            // 41007 表示超时,在接受前表示呼叫超时,在接受后表示对方异常退出
+            if (wilddogVideoError != null && 41007 == wilddogVideoError.getErrCode()) {
+                if (isInConversation) {
+                    // 处理异常退出逻辑
+                } else {
+                    // 处理超时逻辑
+                    dismissDialog();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        closeConversation();
+                        if (isInConversation) {
+                            Toast.makeText(ConversationActivity.this, "对方异常退出,等待超时", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(ConversationActivity.this, "对方呼叫超时,本端未作相应", Toast.LENGTH_SHORT).show();
+                        }
+
+                        Log.e("error", wilddogVideoError.getMessage());
+                    }
+                });
+                if (isInConversation) {
+                    isInConversation = false;
+                }
+            } else {
+                // 其他类型错误
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        closeConversation();
+                        Toast.makeText(ConversationActivity.this, "通话中出错,请查看日志", Toast.LENGTH_SHORT).show();
+                        Log.e("error", wilddogVideoError.getMessage());
+                    }
+                });
+                if (isInConversation) {
+                    isInConversation = false;
+                }
+            }
+        }
+    };
     //AlertDialog列表
     private WilddogVideoCall.Listener inviteListener = new WilddogVideoCall.Listener() {
         @Override
         public void onCalled(final Conversation conversation, String s) {
-            if(!TextUtils.isEmpty(s)){
-                Toast.makeText(ConversationActivity.this,"对方邀请时候携带的信息是:"+s,Toast.LENGTH_SHORT).show();
-                tvData.setText("对方携带数据为:"+s);
+            if (!TextUtils.isEmpty(s)) {
+                Toast.makeText(ConversationActivity.this, "对方邀请时候携带的信息是:" + s, Toast.LENGTH_SHORT).show();
+                tvData.setText("对方携带数据为:" + s);
             }
             mConversation = conversation;
             mConversation.setConversationListener(conversationListener);
@@ -194,6 +308,10 @@ public class ConversationActivity extends AppCompatActivity {
 
     }
 
+    public String convertToMB(BigInteger value) {
+        float result = Float.parseFloat(String.valueOf(value)) / (1024 * 1024);
+        return decimalFormat.format(result);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,7 +347,6 @@ public class ConversationActivity extends AppCompatActivity {
             createAndShowLocalStream();
         }
         conversationAlertDialogMap = new HashMap<>();
-        //在使用inviteToConversation方法前需要先设置会话邀请监听，否则使用邀请功能会抛出IllegalStateException异常
         video.setListener(inviteListener);
     }
 
@@ -241,7 +358,7 @@ public class ConversationActivity extends AppCompatActivity {
         localStream = LocalStream.create(options);
         //开启音频/视频，设置为 false 则关闭声音或者视频画面
         localStream.enableAudio(true);
-         localStream.enableVideo(true);
+        localStream.enableVideo(true);
         //为视频流绑定播放控件
         localStream.attach(localView);
 
@@ -249,8 +366,6 @@ public class ConversationActivity extends AppCompatActivity {
 
     //初始化视频展示控件
     private void initVideoRender() {
-        //获取EglBase对象
-
         //初始化视频展示控件位置，大小
         localViewLayout.setPosition(LOCAL_X_CONNECTED, LOCAL_Y_CONNECTED, LOCAL_WIDTH_CONNECTED, LOCAL_HEIGHT_CONNECTED);
         localView.setZOrderMediaOverlay(true);
@@ -262,14 +377,12 @@ public class ConversationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_invite)
     public void invite() {
-        //取消发起会话邀请
         showLoginUsers();
-
     }
 
     @OnClick(R.id.btn_mic)
-    public void mic(){
-        if(localStream!=null){
+    public void mic() {
+        if (localStream != null) {
             isAudioEnable = !isAudioEnable;
             localStream.enableAudio(isAudioEnable);
         }
@@ -277,7 +390,6 @@ public class ConversationActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_invite_cancel)
     public void inviteCancel() {
-
         closeConversation();
     }
 
@@ -285,11 +397,9 @@ public class ConversationActivity extends AppCompatActivity {
         if (mConversation != null) {
             mConversation.close();
             mConversation = null;
-            //挂断时会释放本地流，如需继续显示本地流，则挂断后要重新获取一次本地流
         }
         btnInvite.setText("用户列表");
     }
-
 
     private void showLoginUsers() {
         startActivityForResult(new Intent(ConversationActivity.this, UserListActivity.class), 0);
@@ -335,95 +445,11 @@ public class ConversationActivity extends AppCompatActivity {
 
     }
 
-    private Conversation.Listener conversationListener = new Conversation.Listener() {
-        @Override
-        public void onCallResponse(CallStatus callStatus) {
-            switch (callStatus) {
-                case ACCEPTED:
-
-                    isInConversation = true;
-                    break;
-                case REJECTED:
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(ConversationActivity.this, "对方拒绝你的邀请", Toast.LENGTH_SHORT).show();
-                            isInConversation = false;
-                            btnInvite.setText("用户列表");
-                        }
-                    });
-                    break;
-                case BUSY:
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(ConversationActivity.this, "对方正在通话中,稍后再呼叫", Toast.LENGTH_SHORT).show();
-                            isInConversation = false;
-                            btnInvite.setText("用户列表");
-                        }
-                    });
-                    break;
-                case TIMEOUT:
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(ConversationActivity.this, "呼叫对方超时,请稍后再呼叫", Toast.LENGTH_SHORT).show();
-                            isInConversation = false;
-                            btnInvite.setText("用户列表");
-                        }
-                    });
-                    break;
-                default:
-                    break;
-            }
+    private void dismissDialog() {
+        if (alertDialog != null && alertDialog.isShowing()) {
+            alertDialog.dismiss();
         }
-
-        @Override
-        public void onStreamReceived(RemoteStream remoteStream) {
-            remoteStream.attach(remoteView);
-            remoteStream.enableAudio(true);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    btnInvite.setText("用户已加入");
-                }
-            });
-        }
-
-        @Override
-        public void onClosed() {
-            Log.e(TAG, "onClosed");
-            if (alertDialog != null && alertDialog.isShowing()) {
-                alertDialog.dismiss();
-            }
-            isInConversation = false;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    closeConversation();
-                    Toast.makeText(ConversationActivity.this, "对方挂断", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        }
-
-        @Override
-        public void onError(final WilddogVideoError wilddogVideoError) {
-            if (wilddogVideoError != null) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(ConversationActivity.this, "通话中出错,请查看日志", Toast.LENGTH_SHORT).show();
-                        Log.e("error", wilddogVideoError.getMessage());
-                        btnInvite.setText("用户列表");
-                        isInConversation = false;
-                    }
-                });
-
-            }
-        }
-    };
-
+    }
 
     @Override
     protected void onDestroy() {
@@ -445,7 +471,9 @@ public class ConversationActivity extends AppCompatActivity {
                 localStream.close();
             }
         }
+        // video 断开与服务端链接,将无法收到请求,需要重新 start 因为video在本界面会重新初始化故释放资源
         video.stop();
+        // 将写入数据实时引擎的数据用户在线状态数据移除
         WilddogSync.getInstance().goOffline();
     }
 }

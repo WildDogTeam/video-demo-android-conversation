@@ -1,7 +1,7 @@
 # Wilddog Video Android demo 开源视频通话应用
 
 ## 本地运行
-首先确认本机已经安装 [Android](http://developer.android.com/index.html)运行环境,git和 Andriod Studio 开发环境 ，然后执行下列指令：
+首先确认本机已经安装 [Android](http://developer.android.com/index.html)运行环境 `git` 和 `Andriod Studio` 开发环境 ，然后执行下列指令：
 
 ```
 git clone git@github.com:WildDogTeam/video-demo-android-conversation.git
@@ -16,7 +16,7 @@ cd  video-demo-android-conversation
     <ul>
         <li> Android Studio 1.5 以上版本 </li>
         <li> JDK 7.0 及以上版本 </li>
-        <li> Android 手机系统 4.4 以上版本， 即 Android SDK 19 以上版本 </li>
+        <li> Android 手机系统 4.1 以上版本， 即 Android SDK 16 以上版本 </li>
     </ul>
 </div>
 
@@ -35,7 +35,7 @@ cd  video-demo-android-conversation
 
 ## 3. 开启实时视频通话
 
-进入 管理应用-实时视频通话，开启视频通话功能。此处注意记下配置页面的`VideoAppID`
+进入 管理应用-实时视频通话，开启视频通话功能。此处注意记下配置页面的 `VideoAppID`
 
 <img src="/images/video_quickstart_openVideo.png" alt="video_quickstart_openVideo">
 
@@ -56,18 +56,18 @@ Android 快速入门是使用 Android Studio 创建的 Android 工程，使用 `
 
 ## 5. 配置应用APPID
 
-快速入门Constants中的SYNC_APPID如下图所示
+快速入门 Constants 中的 SYNC_APPID 如下图所示
 
 <img src="/images/video_quickstart_android_syncappid.jpg" alt="vvideo_quickstart_android_syncappid">
 
-快速入门Constants中的VIDEO_APPID如下图所示
+快速入门 Constants 中的 VIDEO_APPID 如下图所示
 
 <img src="/images/video_quickstart_videoappid.png" alt="video_quickstart_videoappid">
 
 
 ## 6. 运行快速入门
 
-连接安卓手机（4.4 以上版本），运行快速入门。
+连接安卓手机（4.1 以上版本），运行快速入门。
 
 ## 7. 登录快速入门
 
@@ -81,7 +81,7 @@ Android 快速入门是使用 Android Studio 创建的 Android 工程，使用 `
 
 ## 8. 邀请他人加入
 
-在其他安卓手机上使用同一个`VideoAppID` 匿名登录，然后点击用户列表按钮，点击邀请按钮邀请对方加入视频通话。
+在其他安卓手机上使用同一个 `VideoAppID` 匿名登录，然后点击用户列表按钮，点击邀请按钮邀请对方加入视频通话。
 
 <img src="/images/video_quickstart_android_userList.jpg" alt="video_quickstart_android_userList" width="300" >
 
@@ -93,10 +93,10 @@ Android 快速入门是使用 Android Studio 创建的 Android 工程，使用 `
 
 
 ### 版本声明
-本应用使用的是WilddogVideo 2.0+ SDK。
+本应用使用的是 WilddogVideo 2.0.0+ SDK。
 
 ### 联系方式
-如果发现有bug,请及时和我们取得联系。
+如果发现有 bug，请及时和我们取得联系。
 
 工单地址 : https://wilddog.kf5.com/hc/request/new/
 
@@ -106,7 +106,7 @@ Android 快速入门是使用 Android Studio 创建的 Android 工程，使用 `
 
 ## 更多示例
 
-这里分类汇总了 WildDog平台上的示例程序和开源应用，　链接地址：[https://github.com/WildDogTeam/wilddog-demos](https://github.com/WildDogTeam/wilddog-demos)
+这里分类汇总了 WildDog 平台上的示例程序和开源应用，[链接地址](https://github.com/WildDogTeam/wilddog-demos)。
 　　
 
 ## License
