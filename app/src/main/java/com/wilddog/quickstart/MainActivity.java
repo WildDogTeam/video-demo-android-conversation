@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     //本示例采用根节点下的[users] 节点作为用户列表存储节点
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put(uid, true);
-                    SyncReference userRef=WilddogSync.getInstance().getReference("users");
+                    SyncReference userRef = WilddogSync.getInstance().getReference("users");
                     userRef.goOnline();
                     userRef.updateChildren(map);
                     userRef.child(uid).onDisconnect().removeValue();

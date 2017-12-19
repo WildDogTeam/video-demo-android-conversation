@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wilddog.client.SyncReference;
 import com.wilddog.client.WilddogSync;
 import com.wilddog.video.base.LocalStream;
 import com.wilddog.video.base.LocalStreamOptions;
@@ -35,9 +34,6 @@ import com.wilddog.video.call.WilddogVideoCallOptions;
 import com.wilddog.video.call.stats.LocalStreamStatsReport;
 import com.wilddog.video.call.stats.RemoteStreamStatsReport;
 import com.wilddog.wilddogauth.WilddogAuth;
-import com.wilddog.wilddogauth.core.Task;
-import com.wilddog.wilddogauth.core.listener.OnCompleteListener;
-import com.wilddog.wilddogauth.core.result.AuthResult;
 
 import java.math.BigInteger;
 import java.text.DecimalFormat;
@@ -264,7 +260,7 @@ public class ConversationActivity extends AppCompatActivity {
 
         @Override
         public void onTokenError(WilddogVideoError wilddogVideoError) {
-            Log.e(TAG, "onTokenError: "+wilddogVideoError.toString() );
+            Log.e(TAG, "onTokenError: " + wilddogVideoError.toString());
         }
 
     };
@@ -288,7 +284,7 @@ public class ConversationActivity extends AppCompatActivity {
             public void run() {
                 tvLocalDimensions.setText("dimension:" + localStats.getWidth() + "x" + localStats.getHeight());
                 tvLocalFps.setText("fps:" + localStats.getFps());
-                tvLocalRate.setText("rate:" + localStats.getBitsSentRate() + "Kb/s "+localStats.getLocalCandidateType());
+                tvLocalRate.setText("rate:" + localStats.getBitsSentRate() + "Kb/s " + localStats.getLocalCandidateType());
 //                tvLocalSendBytes.setText("sent:" + convertToMB(localStats.getBytesSent()) + "MB");
             }
         });
@@ -302,7 +298,7 @@ public class ConversationActivity extends AppCompatActivity {
                 tvRemoteDimensions.setText("dimension:" + remoteStats.getWidth() + "x" + remoteStats.getHeight());
                 tvRemoteFps.setText("fps:" + remoteStats.getFps());
 //                tvRemoteRecBytes.setText("received:" + convertToMB(remoteStats.getBytesReceived()) + "MB");
-                tvRemoteRate.setText("rate:" + remoteStats.getBitsReceivedRate() + "Kb/s  " +remoteStats.getRemoteCandidateType()+ " delay" + remoteStats.getDelay() + "ms");
+                tvRemoteRate.setText("rate:" + remoteStats.getBitsReceivedRate() + "Kb/s  " + remoteStats.getRemoteCandidateType() + " delay" + remoteStats.getDelay() + "ms");
             }
         });
 
@@ -343,7 +339,7 @@ public class ConversationActivity extends AppCompatActivity {
         initVideoRender();
         if (mHelper.lacksPermissions(PERMISSIONS)) {
             mHelper.requestPermissions(PERMISSIONS);
-        }else {
+        } else {
             createAndShowLocalStream();
         }
         conversationAlertDialogMap = new HashMap<>();
@@ -418,11 +414,12 @@ public class ConversationActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == PermissionHelper.PERMISSION_REQUEST_CODE&& hasAllPermissionsGranted(grantResults)){
-            Log.e(TAG, "onRequestPermissionsResult: " );
+        if (requestCode == PermissionHelper.PERMISSION_REQUEST_CODE && hasAllPermissionsGranted(grantResults)) {
+            Log.e(TAG, "onRequestPermissionsResult: ");
             createAndShowLocalStream();
         }
     }
+
     // 含有全部的权限
     private boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {
         for (int grantResult : grantResults) {
@@ -432,6 +429,7 @@ public class ConversationActivity extends AppCompatActivity {
         }
         return true;
     }
+
     private void inviteToConversation(String participant) {
         btnInvite.setText("用户列表");
         String data = "extra data";
