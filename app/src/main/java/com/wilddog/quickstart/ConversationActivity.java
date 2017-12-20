@@ -102,6 +102,7 @@ public class ConversationActivity extends AppCompatActivity {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA
     };
+    private String participant;
 
     DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private WilddogVideoCall video;
@@ -114,7 +115,6 @@ public class ConversationActivity extends AppCompatActivity {
         public void onCallResponse(CallStatus callStatus) {
             switch (callStatus) {
                 case ACCEPTED:
-
                     isInConversation = true;
                     break;
                 case REJECTED:
@@ -276,7 +276,7 @@ public class ConversationActivity extends AppCompatActivity {
             changeRemoteData(remoteStreamStatsReport);
         }
     };
-    private String participant;
+
 
     public void changeLocalData(final LocalStreamStatsReport localStats) {
         runOnUiThread(new Runnable() {
@@ -285,10 +285,9 @@ public class ConversationActivity extends AppCompatActivity {
                 tvLocalDimensions.setText("dimension:" + localStats.getWidth() + "x" + localStats.getHeight());
                 tvLocalFps.setText("fps:" + localStats.getFps());
                 tvLocalRate.setText("rate:" + localStats.getBitsSentRate() + "Kb/s " + localStats.getLocalCandidateType());
-//                tvLocalSendBytes.setText("sent:" + convertToMB(localStats.getBytesSent()) + "MB");
+                tvLocalSendBytes.setText("sent:" + convertToMB(localStats.getBytesSent()) + "MB");
             }
         });
-
     }
 
     public void changeRemoteData(final RemoteStreamStatsReport remoteStats) {
@@ -297,11 +296,10 @@ public class ConversationActivity extends AppCompatActivity {
             public void run() {
                 tvRemoteDimensions.setText("dimension:" + remoteStats.getWidth() + "x" + remoteStats.getHeight());
                 tvRemoteFps.setText("fps:" + remoteStats.getFps());
-//                tvRemoteRecBytes.setText("received:" + convertToMB(remoteStats.getBytesReceived()) + "MB");
+                tvRemoteRecBytes.setText("received:" + convertToMB(remoteStats.getBytesReceived()) + "MB");
                 tvRemoteRate.setText("rate:" + remoteStats.getBitsReceivedRate() + "Kb/s  " + remoteStats.getRemoteCandidateType() + " delay" + remoteStats.getDelay() + "ms");
             }
         });
-
     }
 
     public String convertToMB(BigInteger value) {
@@ -320,12 +318,8 @@ public class ConversationActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View
                 .SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.activity_conversation);
-
         ButterKnife.bind(this);
-
         mHelper = new PermissionHelper(this);
-
-
         String uid = WilddogAuth.getInstance().getCurrentUser().getUid();
         tvUid.setText(uid);
         LogUtil.setLogLevel(Logger.Level.DEBUG);
@@ -335,7 +329,6 @@ public class ConversationActivity extends AppCompatActivity {
         //获取video对象
         video = WilddogVideoCall.getInstance();
         video.start();
-
         initVideoRender();
         if (mHelper.lacksPermissions(PERMISSIONS)) {
             mHelper.requestPermissions(PERMISSIONS);
@@ -347,7 +340,6 @@ public class ConversationActivity extends AppCompatActivity {
     }
 
     private void createAndShowLocalStream() {
-
         LocalStreamOptions.Builder builder = new LocalStreamOptions.Builder();
         LocalStreamOptions options = builder.dimension(LocalStreamOptions.Dimension.DIMENSION_240P).build();
         //创建本地视频流，通过video对象获取本地视频流
@@ -357,7 +349,6 @@ public class ConversationActivity extends AppCompatActivity {
         localStream.enableVideo(true);
         //为视频流绑定播放控件
         localStream.attach(localView);
-
     }
 
     //初始化视频展示控件
@@ -366,9 +357,7 @@ public class ConversationActivity extends AppCompatActivity {
         localViewLayout.setPosition(LOCAL_X_CONNECTED, LOCAL_Y_CONNECTED, LOCAL_WIDTH_CONNECTED, LOCAL_HEIGHT_CONNECTED);
         localView.setZOrderMediaOverlay(true);
         localView.setMirror(true);
-
         remoteViewLayout.setPosition(REMOTE_X, REMOTE_Y, REMOTE_WIDTH, REMOTE_HEIGHT);
-
     }
 
     @OnClick(R.id.btn_invite)
@@ -415,7 +404,6 @@ public class ConversationActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PermissionHelper.PERMISSION_REQUEST_CODE && hasAllPermissionsGranted(grantResults)) {
-            Log.e(TAG, "onRequestPermissionsResult: ");
             createAndShowLocalStream();
         }
     }
@@ -440,7 +428,6 @@ public class ConversationActivity extends AppCompatActivity {
         mConversation = video.call(participant, localStream, option);
         mConversation.setConversationListener(conversationListener);
         mConversation.setStatsListener(statsListener);
-
     }
 
     private void dismissDialog() {
